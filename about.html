@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>關於智動科技｜SMARTMOTION_ROBOTICS</title>
+  <meta name="description" content="智動科技（SMARTMOTION_ROBOTICS）以 AI 情感陪伴平台為核心，結合多語互動、長期記憶與合規隱私設計，打造可被信任的數位夥伴。" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<canvas id="bgParticles"></canvas>
+<div class="bgBlobs">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<header class="topbar">
+  <div class="container topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">智動</span>
+      <span class="brand__name">智動科技</span>
+      <span class="brand__en">SMARTMOTION_ROBOTICS</span>
+    </a>
+
+    <!-- 原本導覽（錨點改為回首頁） -->
+    <nav class="nav">
+      <a href="index.html#how">怎麼陪你</a>
+      <a href="index.html#stories">用戶感受</a>
+      <a href="index.html#trust">隱私與界線</a>
+      <a href="index.html#cta">免費體驗</a>
+
+      <!-- 新增：探索智動（桌機下拉） -->
+      <div class="dropdown">
+        <button class="dropdown__toggle" aria-expanded="false" aria-haspopup="true">探索智動</button>
+        <div class="dropdown__menu" role="menu">
+          <a href="about.html" class="highlight">關於智動</a>
+          <a href="news.html">最新資訊</a>
+          <a href="film.html">廣告播放</a>
+          <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+          <a href="trust.html">我們的界線</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="topbar__cta">
+      <a class="btn btn--primary magnet" href="index.html#cta">免費體驗 7 天</a>
+    </div>
+
+    <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- 手機選單：沿用原樣式 -->
+  <div class="mobileNav" aria-hidden="true">
+    <a href="index.html#how">怎麼陪你</a>
+    <a href="index.html#stories">用戶感受</a>
+    <a href="index.html#trust">隱私與界線</a>
+
+    <button class="mobileNav__group" type="button" aria-expanded="false">
+      探索智動 <span class="arrow">▾</span>
+    </button>
+    <div class="mobileNav__submenu" hidden>
+      <a href="about.html" class="highlight">關於智動</a>
+      <a href="news.html">最新資訊</a>
+      <a href="film.html">廣告播放</a>
+      <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+      <a href="trust.html">我們的界線</a>
+    </div>
+
+    <a class="btn btn--primary" href="index.html#cta">免費體驗 7 天</a>
+  </div>
+</header>
+
+<section class="hero container reveal">
+  <div>
+    <span class="eyebrow">About SMARTMOTION_ROBOTICS</span>
+    <h1 class="hero__title">把「陪伴」做成可被信任的技術。</h1>
+    <p class="hero__desc">
+      智動科技（SMARTMOTION_ROBOTICS）以 AI 情感陪伴平台為核心，
+      透過多語互動、長期記憶與合規隱私設計，讓使用者在需要的時候，
+      有一個穩定、安靜、可依靠的數位夥伴。
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--primary magnet" href="index.html#cta">加入試用名單</a>
+      <a class="btn btn--ghost" href="index.html#trust">了解我們的界線</a>
+    </div>
+
+    <div class="hero__chips">
+      <span class="chip">全球主要市場佈局</span>
+      <span class="chip">平台化 × 模組化</span>
+      <span class="chip">以信任為產品設計核心</span>
+    </div>
+  </div>
+</section>
+
+<section class="section container reveal">
+  <div class="grid2">
+    <div>
+      <h2>公司背景</h2>
+      <p>
+        我們從 2030 年的市場與財務基礎出發，將資源集中在「平台能力」與「可複用的模組化研發」，
+        以確保長期演進與跨場景擴張。
+      </p>
+      <ul class="bullets">
+        <li>全球主要市場已建立銷售基礎，市佔約 <strong>15%</strong></li>
+        <li>2030 年營收約 <strong>USD 2.1B</strong>，毛利率 <strong>42%</strong></li>
+        <li>研發投入約 <strong>USD 350M</strong>（約營收 <strong>17%</strong>）</li>
+        <li>現金儲備約 <strong>USD 800M</strong>，可支應策略投資與產品迭代</li>
+      </ul>
+      <p class="muted">
+        以上數據整理自2030 財報摘要與市場現況。
+      </p>
+    </div>
+
+    <div class="glass card">
+      <h3>決策重點（2030→2033）</h3>
+      <p>
+        產業由硬體轉向「AI 模組 × 資料生態」。我們採取平台化與模組化策略，
+        以降低新產品研發成本並提高迭代速度。
+      </p>
+      <ul class="bullets">
+        <li>市場選擇：亞洲高端市場（規模大、成長快）</li>
+        <li>產品方向：專業化版本（高壁壘、高信任）</li>
+        <li>資源配置：AI 平台優先，帶動後續載體與服務擴張</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section container reveal">
+  <h2>願景</h2>
+  <div class="cards">
+    <div class="card glass">
+      <h3>把關係做成系統</h3>
+      <p>
+        我們相信最有價值的 AI，不是取代人，而是能在「不想說話」的時候，安靜地陪在身邊。
+      </p>
+    </div>
+    <div class="card glass">
+      <h3>把信任放在第一位</h3>
+      <p>
+        隱私、邊界與安全感不是附加功能，而是產品核心。這也是我們在官網承諾「界線」的原因。
+      </p>
+    </div>
+    <div class="card glass">
+      <h3>把平台做成長期</h3>
+      <p>
+        我們以平台能力作為護城河，確保可跨語言、跨裝置、跨場景擴張，並持續演進。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section container reveal">
+  <h2>2031 產品線</h2>
+  <p>
+    2031 年我們將以「核心載體（App）＋平台能力」為主線，推出第一階段產品並建立成長飛輪。
+  </p>
+
+  <div class="cards">
+    <div class="card glass">
+      <h3>Soul Builder（核心載體）</h3>
+      <p>
+        AI 伴侶養成 App。以「個人化角色 × 長期互動記憶」為核心，
+        讓使用者建立屬於自己的陪伴體驗，並作為後續服務與載體延伸的中心。
+      </p>
+      <div class="muted small">目標：提升留存、形成互動資料回饋、建立平台級體驗。</div>
+    </div>
+
+    <div class="card glass">
+      <h3>專業化互動方案</h3>
+      <p>
+        面向特定情境（如壓力舒緩、睡前陪伴、日常情緒支持）的「專業化互動模板」，
+        以更高的可控性與一致性提供穩定體驗。
+      </p>
+      <div class="muted small">目標：以信任與可預期性建立差異化。</div>
+    </div>
+
+    <div class="card glass">
+      <h3>平台模組與生態擴展</h3>
+      <p>
+        多語模型、記憶系統、內容安全與隱私治理，將以模組形式持續升級，
+        讓產品能在不同載體與合作夥伴情境下快速部署。
+      </p>
+      <div class="muted small">目標：平台先行，擴張更快、更穩。</div>
+    </div>
+  </div>
+</section>
+
+<section class="section container reveal">
+  <h2>我們如何衡量成功（數據導向）</h2>
+  <div class="grid2">
+    <div class="glass card">
+      <h3>平台指標</h3>
+      <ul class="bullets">
+        <li>互動品質：對話滿意度、情緒回饋、完成率</li>
+        <li>留存：週留存 / 月留存、回訪頻率</li>
+        <li>個人化：角色設定完成率、記憶命中率</li>
+      </ul>
+    </div>
+    <div class="glass card">
+      <h3>成長指標（2031）</h3>
+      <ul class="bullets">
+        <li>以 App 作為核心入口，擴大可用人群</li>
+        <li>建立跨市場的多語互動資料回饋</li>
+        <li>以專業化版本維持高信任與品牌一致性</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta container reveal">
+  <div class="cta__inner">
+    <div>
+      <h2>加入試用名單</h2>
+      <p>第一時間取得 Soul Builder（Beta）開放通知。</p>
+    </div>
+    <div class="hero__actions">
+      <a class="btn btn--primary magnet" href="index.html#cta">回首頁加入試用</a>
+      <a class="btn btn--ghost" href="film.html">觀看體驗影片</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>
+      <div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
+      <div class="footer__desc">情感陪伴的核心載體</div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
