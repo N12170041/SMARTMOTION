@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>廣告播放｜智動科技 SMARTMOTION_ROBOTICS</title>
+  <meta name="description" content="智動科技（SMARTMOTION_ROBOTICS）品牌形象影片、登入頁背景 Loop 與首次啟動體驗影片。" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- film page only: 不改動全站 style.css，僅補齊影片版面需求 -->
+  <style>
+    .page-film .videoCard{overflow:hidden}
+
+    /* 影片通用 */
+    .page-film .video{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:18px;
+      background:rgba(0,0,0,.25);
+      outline:none;
+    }
+
+    /* 直式 9:16（本次新增重點） */
+    .page-film .video--portrait{
+  aspect-ratio:9/16;
+  object-fit:contain;
+  object-position:center center;
+  background:#000;
+}
+
+
+    /* 橫式 16:9（Hero 影片固定比例） */
+    .page-film .video--landscape{
+      aspect-ratio:16/9;
+      object-fit:contain;
+      object-position:center center;
+      background:#000;
+    }
+
+    .page-film .videoMeta{margin-top:10px}
+    .page-film .videoMeta .k{color:var(--txt); font-weight:900; margin:0 0 6px}
+    .page-film .videoMeta .d{margin:0; color:var(--muted); font-size:13px; line-height:1.7}
+
+    .page-film .hero__desc{max-width:720px}
+    .page-film .miniBadges{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
+    .page-film .miniBadges .chip{user-select:none}
+    .page-film .noteLine{
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:12px;
+    }
+
+    /* 三欄影片網格：桌機 3 欄、手機 1 欄 */
+    .page-film .grid3{
+      display:grid;
+      gap:18px;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .page-film .grid3{grid-template-columns:1fr;}
+    }
+
+    /* 讓直式卡片看起來更穩（可選） */
+    .page-film .portraitCard{
+      max-width:520px;
+      margin-inline:auto;
+    }
+
+ /* ===== Fullscreen tuning (PC)：直式 9:16 影片全螢幕置中、避免超出 =====
+       說明：有些瀏覽器全螢幕時，fullscreen target 可能是 <video> 或其容器，
+       因此同時覆蓋「video 本身全螢幕」與「容器全螢幕」兩種情境。
+    */
+    .page-film video.video--portrait:fullscreen,
+    .page-film video.video--portrait:-webkit-full-screen,
+    .page-film video.video--portrait:-moz-full-screen,
+    .page-film video.video--portrait:-ms-fullscreen{
+      width:100% !important;
+      height:100% !important;
+      max-width:100vw !important;
+      max-height:100vh !important;
+      object-fit:contain !important;     /* 關鍵：直式全螢幕用 contain */
+      background:#000 !important;
+      border-radius:0 !important;
+      aspect-ratio:auto !important;      /* 解除 9:16 固定比例，避免某些瀏覽器計算錯誤 */
+    }
+
+   /* 有些瀏覽器 fullscreen target 不是 video 本身，補這組更穩 */
+.page-film :fullscreen video.video--portrait,
+.page-film :-webkit-full-screen video.video--portrait,
+.page-film :-moz-full-screen video.video--portrait,
+.page-film :-ms-fullscreen video.video--portrait {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #000 !important;
+  border-radius: 0 !important;
+  aspect-ratio: auto !important;
+}
+
+    video.video--portrait::backdrop{
+      background:#000;
+    }
+
+
+  </style>
+</head>
+
+<body class="page-film">
+  <canvas id="bgParticles" aria-hidden="true"></canvas>
+  <div class="bgBlobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#how">怎麼陪你</a>
+        <a href="index.html#stories">用戶感受</a>
+        <a href="index.html#trust">隱私與界線</a>
+        <a href="index.html#cta">免費體驗</a>
+
+        <div class="dropdown">
+          <button class="dropdown__toggle" aria-expanded="false" aria-haspopup="true">探索智動</button>
+          <div class="dropdown__menu" role="menu">
+            <a href="about.html">關於智動</a>
+            <a href="news.html">最新資訊</a>
+            <a href="film.html" class="highlight">廣告播放</a>
+            <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+            <a href="trust.html">我們的界線</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="topbar__cta">
+        <a class="btn btn--primary magnet" href="index.html#cta">免費體驗 7 天</a>
+      </div>
+
+      <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobileNav" aria-hidden="true">
+      <a href="index.html#how">怎麼陪你</a>
+      <a href="index.html#stories">用戶感受</a>
+      <a href="index.html#trust">隱私與界線</a>
+
+      <button class="mobileNav__group" type="button" aria-expanded="false">
+        探索智動 <span class="arrow">▾</span>
+      </button>
+      <div class="mobileNav__submenu" hidden>
+        <a href="about.html">關於智動</a>
+        <a href="news.html">最新資訊</a>
+        <a href="film.html" class="highlight">廣告播放</a>
+        <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+        <a href="trust.html">我們的界線</a>
+      </div>
+
+      <a class="btn btn--primary" href="index.html#cta">免費體驗 7 天</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero：品牌形象影片（維持 16:9，不動） -->
+    <section class="hero container reveal">
+      <div>
+        <span class="eyebrow">Film / Ads</span>
+        <h1 class="hero__title">把「陪伴」做成一段可感受的體驗。</h1>
+        <p class="hero__desc">
+          這裡集中展示智動科技的推廣影片與產品體驗片段：品牌形象、登入頁背景 Loop、
+          以及首次啟動（First Launch）情境示範。
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary magnet" href="#brand">先看品牌形象</a>
+          <a class="btn btn--ghost" href="#login">看 Login Loop</a>
+          <a class="btn btn--ghost" href="#first">看 First Launch</a>
+        </div>
+
+        <div class="miniBadges">
+          <span class="chip">先感受</span>
+          <span class="chip">再體驗</span>
+          <span class="chip">客製化第三階硬體使用</span>
+        </div>
+
+        <div class="noteLine">一次跨越次元的身心救贖。</div>
+      </div>
+
+      <aside class="card glass videoCard" aria-label="品牌形象影片播放器" id="brand">
+        <video
+          class="video video--landscape"
+          src="品牌影片.mp4"
+          controls
+          playsinline
+          preload="metadata"
+        ></video>
+
+        <div class="videoMeta">
+          <p class="k">在冰冷的科技中—賦予你貪婪的權利</p>
+          <p class="d">從指尖的幻影，到眼前的溫熱—這一次，讓她/他走出螢幕。</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Login Loop：拆成 3 支、改 9:16 -->
+    <section class="section container reveal" id="login">
+      <div class="sectionHead">
+        <h2>登入頁背景影片展示（Login Loop）</h2>
+        <p>Welcome。。。</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card glass videoCard portraitCard">
+          <video
+            class="video video--portrait"
+            src="啵啵.mp4"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+          <div class="videoMeta">
+            <p class="k">Login Loop 01</p>
+            <p class="d">展示(一)。</p>
+          </div>
+        </div>
+
+        <div class="card glass videoCard portraitCard">
+          <video
+            class="video video--portrait"
+            src="you_turn.mp4"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+          <div class="videoMeta">
+            <p class="k">Login Loop 02</p>
+            <p class="d">展示二</p>
+          </div>
+        </div>
+
+        <div class="card glass videoCard portraitCard">
+          <video
+            class="video video--portrait"
+            src="相信我.mp4"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+          <div class="videoMeta">
+            <p class="k">Login Loop 03</p>
+            <p class="d">展示三。</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px" class="card glass">
+        <h3>體驗建議：</h3>
+        <ul class="bullets">
+          <li>「不用表現什麼，先進來就好。」</li>
+          <li>「你可以慢慢來，節奏由你決定。」</li>
+          <li>「不想說話也沒關係，我在。」</li>
+        </ul>
+        <p class="muted small">目標：解放你的渴望。</p>
+      </div>
+    </section>
+
+    <!-- First Launch：拆成 3 支、改 9:16 -->
+    <section class="section container reveal" id="first">
+      <div class="sectionHead">
+        <h2>你不是被引導，你是主導</h2>
+        <p>第一次啟動，不是設定，是一場靠近。</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card glass videoCard portraitCard">
+          <video
+            class="video video--portrait"
+            src="第一階段宣傳片.mp4"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+          <div class="videoMeta">
+            <p class="k">First Launch 01</p>
+            <p class="d">情境示範(一)</p>
+          </div>
+        </div>
+
+        <div class="card glass videoCard portraitCard">
+          <video
+            class="video video--portrait"
+            src="第一階段展示影片.mp4"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+          <div class="videoMeta">
+            <p class="k">First Launch 02</p>
+            <p class="d">情境示範(二)</p>
+          </div>
+        </div>
+
+        <div class="card glass videoCard portraitCard">
+          <video
+            class="video video--portrait"
+            src="夜晚儀式2.mp4"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+          <div class="videoMeta">
+            <p class="k">First Launch 03</p>
+            <p class="d">情境示範(三)</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px" class="card glass">
+        <h3>首次啟動腳本框架（建議）</h3>
+        <ul class="bullets">
+          <li>Step 1：選擇語氣（溫和 / 安靜 / 直接）</li>
+          <li>Step 2：設定界線（互動節奏 / 內容範圍）</li>
+          <li>Step 3：第一段 10 秒陪伴（可回應 / 可不回應）</li>
+          <li>Step 4：提示「可刪除 / 可匯出 / 可退出」</li>
+        </ul>
+        <p class="muted small">她不急著靠近，只等你允許。</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta container reveal">
+      <div class="cta__inner">
+        <div>
+          <h2>想直接體驗？</h2>
+          <p>回首頁加入試用名單，第一時間取得 Soul Builder（Beta）開放通知。</p>
+          <div class="ctaPills">
+            <span class="pill">不用信用卡</span>
+            <span class="pill">可匿名開始</span>
+            <span class="pill">隨時離開</span>
+          </div>
+        </div>
+        <div class="hero__actions">
+          <a class="btn btn--primary magnet" href="index.html#cta">回首頁加入試用</a>
+          <a class="btn btn--ghost" href="index.html#trust">先了解界線</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>
+          <div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
+          <div class="footer__desc">情感陪伴的核心載體</div>
+        </div>
+        <div class="footer__right">
+          <a href="#brand">品牌形象</a>
+          <span class="sep">·</span>
+          <a href="#login">Login Loop</a>
+          <span class="sep">·</span>
+          <a href="#first">First Launch</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

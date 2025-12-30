@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Web App｜伺服器維護中</title>
+  <meta name="description" content="Soul Builder Web App 維護中。請稍後再試，或回到官網與 Soul Builder 入口頁。" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body.page-webapp{ min-height:100vh; }
+    body.page-webapp .topbar{ position:relative; z-index:6; }
+
+    /* Fullscreen video background */
+    body.page-webapp .loginBg{
+      position:fixed; inset:0; z-index:0;
+      background:#000;
+    }
+    body.page-webapp .loginBg video{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:.80;
+      filter:saturate(1.05) contrast(1.05);
+    }
+    body.page-webapp .loginBg::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 520px at 20% 15%, rgba(122,162,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 90% 75%, rgba(157,123,255,.14), transparent 60%),
+        linear-gradient(180deg, rgba(11,16,32,.48), rgba(11,16,32,.82) 55%, rgba(11,16,32,.94));
+    }
+
+    body.page-webapp main{ position:relative; z-index:5; }
+    body.page-webapp .stage{
+      min-height:calc(100vh - 76px);
+      display:grid;
+      place-items:center;
+      padding:26px 0 46px;
+    }
+
+    /* Maintenance card */
+    body.page-webapp .maintCard{
+      width:min(760px, calc(100vw - 32px));
+      border-radius:var(--radius2);
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(11,16,32,.58);
+      backdrop-filter: blur(14px);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    body.page-webapp .maintHead{
+      padding:18px 18px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    }
+    body.page-webapp .badgeRow{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px; font-weight:900;
+      white-space:nowrap;
+    }
+    body.page-webapp .dot{
+      width:8px; height:8px; border-radius:999px;
+      background:linear-gradient(135deg, rgba(255,176,105,.95), rgba(157,123,255,.95));
+      box-shadow:0 0 0 4px rgba(255,176,105,.12);
+    }
+    body.page-webapp .maintTitle{
+      margin:0;
+      font-size:22px;
+      font-weight:1000;
+      letter-spacing:.2px;
+    }
+    body.page-webapp .maintSub{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+      max-width:52ch;
+    }
+    body.page-webapp .maintBody{ padding:18px; }
+    body.page-webapp .bigMsg{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      padding:18px;
+    }
+    body.page-webapp .bigMsg__line1{
+      font-size:28px;
+      font-weight:1000;
+      letter-spacing:.3px;
+    }
+    body.page-webapp .bigMsg__line2{
+      margin-top:10px;
+      color:var(--muted);
+      line-height:1.75;
+    }
+
+    body.page-webapp .statusRow{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    body.page-webapp .statusPill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(11,16,32,.35);
+      color:var(--muted2);
+      font-size:12px;
+    }
+    body.page-webapp .pulse{
+      width:8px; height:8px; border-radius:999px;
+      background:rgba(255,176,105,.92);
+      box-shadow:0 0 0 0 rgba(255,176,105,.28);
+      animation:pulse 1.4s ease-out infinite;
+    }
+    @keyframes pulse{
+      0%{ box-shadow:0 0 0 0 rgba(255,176,105,.28); }
+      70%{ box-shadow:0 0 0 10px rgba(255,176,105,0); }
+      100%{ box-shadow:0 0 0 0 rgba(255,176,105,0); }
+    }
+
+    body.page-webapp .actions{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    body.page-webapp .actions .btn{ flex:1 1 220px; min-height:44px; }
+    body.page-webapp .note{
+      margin-top:12px;
+      color:var(--muted2);
+      font-size:12px;
+      line-height:1.65;
+    }
+    body.page-webapp .note a{ color:var(--muted); text-decoration:none; }
+    body.page-webapp .note a:hover{ text-decoration:underline; }
+
+    body.page-webapp .footer{ position:relative; z-index:5; }
+
+    @media (max-width: 520px){
+      body.page-webapp .bigMsg__line1{ font-size:24px; }
+      body.page-webapp .actions .btn{ flex-basis: 100%; }
+    }
+  </style>
+</head>
+
+<body class="page-webapp">
+  <div class="loginBg" aria-hidden="true">
+    <video src="等待.mp4" autoplay muted loop playsinline preload="metadata"></video>
+  </div>
+
+  <canvas id="bgParticles" aria-hidden="true"></canvas>
+  <div class="bgBlobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <header class="topbar" id="top">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
+      </a>
+
+      <nav class="nav">
+        <a href="soul-builder.html">Soul Builder</a>
+        <a href="trust.html">我們的界線</a>
+        <a href="film.html">廣告播放</a>
+      </nav>
+
+      <div class="topbar__cta">
+        <a class="btn btn--ghost" href="soul-builder.html#cta">加入試用</a>
+      </div>
+
+      <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobileNav" aria-hidden="true">
+      <a href="soul-builder.html">Soul Builder</a>
+      <a href="trust.html">我們的界線</a>
+      <a href="film.html">廣告播放</a>
+      <a class="btn btn--primary" href="soul-builder.html#cta">加入試用</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="stage container">
+      <div class="maintCard reveal" role="status" aria-live="polite">
+        <div class="maintHead">
+          <div>
+            <p class="eyebrow">Web App · 狀態頁 <span class="badge" style="margin-left:8px;">Maintenance</span></p>
+            <h1 class="maintTitle">Soul Builder Web App</h1>
+            <p class="maintSub">
+              我們正在進行系統維護與效能調校，確保你的互動體驗穩定、界線設定可靠。
+              造成不便，敬請見諒。
+            </p>
+          </div>
+          <div class="badgeRow"><span class="dot"></span> 維護中</div>
+        </div>
+
+        <div class="maintBody">
+          <div class="bigMsg">
+            <div class="bigMsg__line1">伺服器維護中。。。</div>
+            <div class="bigMsg__line2">
+              你可以先回到官網了解產品，或前往 Soul Builder 入口加入 Beta 試用名單。<br />
+              若你是測試者，請稍後重新整理本頁再試一次。
+            </div>
+
+            <div class="statusRow">
+              <div class="statusPill"><span class="pulse" aria-hidden="true"></span> 系統更新與監控中</div>
+              <div class="statusPill" id="timePill">更新時間：—</div>
+            </div>
+
+            <div class="actions">
+              <button class="btn btn--primary magnet" id="refreshBtn" type="button">重新整理</button>
+              <a class="btn btn--ghost" href="soul-builder.html#gate">回到入口（Web App 入口卡片）</a>
+              <a class="btn btn--ghost" href="soul-builder.html#cta">加入試用名單</a>
+              <a class="btn btn--ghost" href="index.html">回官網首頁</a>
+            </div>
+
+            <div class="note">
+              你也可以先查看：<a href="news.html">最新資訊</a> · <a href="trust.html">我們的界線</a> · <a href="film.html">品牌影片</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
+          <div class="footer__desc">Web App 狀態頁｜維護中</div>
+        </div>
+        <div class="footer__right">
+          <a href="trust.html">界線</a>
+          <span class="sep">·</span>
+          <a href="soul-builder.html">Soul Builder</a>
+          <span class="sep">·</span>
+          <a href="index.html">回官網</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    (function(){
+      const timePill = document.getElementById("timePill");
+      const refreshBtn = document.getElementById("refreshBtn");
+      const pad = (n) => String(n).padStart(2,"0");
+      const fmt = (d) => (
+        d.getFullYear() + "-" +
+        pad(d.getMonth()+1) + "-" +
+        pad(d.getDate()) + " " +
+        pad(d.getHours()) + ":" +
+        pad(d.getMinutes())
+      );
+      const tick = () => { if(timePill) timePill.textContent = "更新時間：" + fmt(new Date()); };
+      tick();
+      setInterval(tick, 60000);
+      if(refreshBtn) refreshBtn.addEventListener("click", () => location.reload());
+    })();
+  </script>
+</body>
+</html>

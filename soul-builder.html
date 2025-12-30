@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Soul Builder Beta｜智動科技 Web App 入口</title>
+  <meta name="description" content="Soul Builder 是智動科技的核心載體：用可控界線建立陪伴體驗。加入 Beta 試用名單或直接進入 Web App。" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== Page: Soul Builder (bridge) ===== */
+    body.page-soul .hero{ padding:48px 0 22px; }
+    body.page-soul .hero__title{ font-size:40px; }
+    body.page-soul .hero__desc{ max-width:640px; }
+
+    /* App Gate card with background video */
+    body.page-soul .appGate{
+      position:relative;
+      overflow:hidden;
+      border-radius:var(--radius2);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      box-shadow:var(--shadow);
+      min-height:420px;
+    }
+    body.page-soul .appGate__bg{
+      position:absolute; inset:0;
+      background:#000;
+    }
+    body.page-soul .appGate__bg video{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:.78;
+      filter:saturate(1.05) contrast(1.02);
+    }
+    body.page-soul .appGate__veil{
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(11,16,32,.35), rgba(11,16,32,.78) 55%, rgba(11,16,32,.92));
+      pointer-events:none;
+    }
+    body.page-soul .appGate__content{
+      position:relative;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:420px;
+    }
+    body.page-soul .appGate__head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(11,16,32,.35);
+      backdrop-filter: blur(10px);
+    }
+    body.page-soul .betaBadge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px; font-weight:900;
+      white-space:nowrap;
+    }
+    body.page-soul .betaDot{
+      width:8px; height:8px; border-radius:999px;
+      background:linear-gradient(135deg, rgba(122,162,255,.95), rgba(157,123,255,.95));
+      box-shadow:0 0 0 4px rgba(122,162,255,.12);
+    }
+    body.page-soul .gateTitle{
+      font-size:14px;
+      color:var(--txt);
+      font-weight:900;
+    }
+    body.page-soul .gateSub{
+      color:var(--muted2);
+      font-size:12px;
+    }
+
+    body.page-soul .gateBody{
+      margin-top:auto;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(11,16,32,.52);
+      backdrop-filter: blur(12px);
+      padding:14px;
+    }
+    body.page-soul .gateBody h3{ margin:0 0 8px; font-size:18px; }
+    body.page-soul .gateBody p{ margin:0 0 12px; color:var(--muted); }
+
+    body.page-soul .gateActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    body.page-soul .btnWide{
+      flex:1 1 200px;
+      min-height:44px;
+    }
+    body.page-soul .finePrint{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted2);
+      line-height:1.6;
+    }
+
+    /* Highlights */
+    body.page-soul .pillRow{
+      margin-top:10px;
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    body.page-soul .pillMini{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+    }
+    body.page-soul .pillMini i{
+      width:8px; height:8px; border-radius:999px;
+      background:rgba(124,255,193,.75);
+      display:inline-block;
+    }
+
+    /* CTA section tweaks */
+    body.page-soul .cta{ padding:46px 0; }
+    body.page-soul .cta__inner{ align-items:stretch; }
+
+    @media (max-width: 980px){
+      body.page-soul .hero{ grid-template-columns:1fr; }
+      body.page-soul .hero__title{ font-size:34px; }
+      body.page-soul .appGate{ min-height:380px; }
+      body.page-soul .appGate__content{ min-height:380px; }
+    }
+  </style>
+</head>
+
+<body class="page-soul">
+  <canvas id="bgParticles" aria-hidden="true"></canvas>
+  <div class="bgBlobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <header class="topbar" id="top">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#how">怎麼陪你</a>
+        <a href="index.html#stories">用戶感受</a>
+        <a href="index.html#trust">隱私與界線</a>
+        <a href="index.html#cta">免費體驗</a>
+
+        <div class="dropdown">
+          <button class="dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+            探索智動
+          </button>
+          <div class="dropdown__menu" role="menu">
+            <a href="about.html">關於智動</a>
+            <a href="news.html">最新資訊</a>
+            <a href="film.html">廣告播放</a>
+            <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+            <a href="trust.html">我們的界線</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="topbar__cta">
+        <a class="btn btn--ghost" href="#trust">先看界線</a>
+        <a class="btn btn--primary magnet" href="#cta">加入試用</a>
+      </div>
+
+      <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobileNav" aria-hidden="true">
+      <button class="mobileNav__group" type="button" aria-expanded="false">
+        探索智動 <span class="arrow">▾</span>
+      </button>
+      <div class="mobileNav__submenu" hidden>
+        <a href="about.html">關於智動</a>
+        <a href="news.html">最新資訊</a>
+        <a href="film.html">廣告播放</a>
+        <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+        <a href="trust.html">我們的界線</a>
+      </div>
+
+      <a href="index.html#how">怎麼陪你</a>
+      <a href="index.html#stories">用戶感受</a>
+      <a href="index.html#trust">隱私與界線</a>
+      <a class="btn btn--primary" href="#cta">加入試用</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero__content reveal">
+        <p class="eyebrow">Soul Builder · Web App 入口橋接頁 <span class="badge" style="margin-left:8px;">Beta</span></p>
+
+        <h1 class="hero__title">
+          Soul Builder<br />
+          你的「界線可控」關係建構器
+        </h1>
+
+        <p class="hero__desc">
+          Soul Builder 是智動科技的核心載體：把互動節奏、內容邊界、記憶與偏好都收斂到一個可控介面裡。<br />
+          你不用表現，也不需要迎合——你只要設定「你想要的距離」。
+        </p>
+
+        <div class="pillRow">
+          <span class="pillMini"><i></i> 低壓互動</span>
+          <span class="pillMini"><i></i> 節奏可調</span>
+          <span class="pillMini"><i></i> 記憶可控</span>
+          <span class="pillMini"><i></i> 可退出／可重設</span>
+        </div>
+
+        <div class="hero__actions" style="margin-top:16px;">
+          <a class="btn btn--primary magnet" href="#cta">加入試用名單</a>
+          <a class="btn btn--ghost" href="#gate">進入 Web App</a>
+          <div class="ctaHint">Beta：先收集體驗回饋 · 漸進開放功能</div>
+        </div>
+
+        <div class="trustRow">
+          <div class="trustItem"><span class="trustDot"></span>不逼你分享、不做評分</div>
+          <div class="trustItem"><span class="trustDot"></span>界線永遠由你設定</div>
+          <div class="trustItem"><span class="trustDot"></span>可刪除／可匯出（分階段）</div>
+        </div>
+      </div>
+
+      <div class="hero__panel reveal" id="gate">
+        <div class="appGate">
+          <div class="appGate__bg" aria-hidden="true">
+            <video src="等待.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <div class="appGate__veil"></div>
+          </div>
+
+          <div class="appGate__content">
+            <div class="appGate__head">
+              <div>
+                <div class="gateTitle">Web App 入口</div>
+                <div class="gateSub">登入背景影片：等待.mp4</div>
+              </div>
+              <div class="betaBadge"><span class="betaDot"></span> BETA ACCESS</div>
+            </div>
+
+            <div class="gateBody">
+              <h3>先設定界線，再開始靠近</h3>
+              <p>你可以先試用，再決定要不要留下。任何時候都能退出或重設。</p>
+
+              <form class="ctaForm" id="leadForm">
+                <label class="srOnly" for="email">Email</label>
+                <input id="email" type="email" placeholder="你的 Email（僅用於通知與試用開通）" required />
+                <div class="gateActions">
+                  <button class="btn btn--primary magnet btnWide" type="submit">加入試用名單</button>
+                  <a class="btn btn--ghost btnWide" href="app.html">進入 Web App</a>
+                </div>
+                <div class="finePrint">
+                  提交即代表同意隱私政策（Privacy Policy）。我們不做騷擾式推播。<br />
+                  若你的 Web App 是外部網址，將 <code>app.html</code> 改成對應 URL 即可。
+                </div>
+                <div class="formMsg" id="formMsg" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="strip">
+      <div class="container strip__inner reveal">
+        <div class="stripItem">
+          <div class="stripTitle">核心載體</div>
+          <div class="stripDesc">把「陪伴」落地成可設定、可退出、可重設的 Web App 互動流程</div>
+        </div>
+        <div class="stripItem">
+          <div class="stripTitle">你掌控的東西</div>
+          <div class="stripDesc">語氣 · 節奏 · 記憶 · 話題邊界 · 通知與互動頻率</div>
+        </div>
+        <div class="stripItem">
+          <div class="stripTitle">Beta 目標</div>
+          <div class="stripDesc">用最少功能換到最真實回饋：舒適、可控、願意回來</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="features">
+      <div class="sectionHead reveal">
+        <h2>Beta 功能亮點</h2>
+        <p>先把「體驗」做對：降低社交壓力、提升可控感、建立可重複的陪伴儀式。</p>
+      </div>
+
+      <div class="cards3">
+        <article class="card reveal">
+          <h3>節奏旋鈕（Pace Dial）</h3>
+          <p>你決定互動頻率與回應密度：安靜、輕量、標準、深度。</p>
+          <ul>
+            <li>一鍵切換互動強度</li>
+            <li>可設定「不打擾時段」</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3>界線與話題範圍</h3>
+          <p>把你不想碰的內容先封好：你可以放心留下。</p>
+          <ul>
+            <li>敏感話題可關閉</li>
+            <li>互動深度分級（溫和/一般/深入）</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3>記憶可控（Memory Control）</h3>
+          <p>讓它記得你，但不讓它「超出你允許的記得」。</p>
+          <ul>
+            <li>記憶範圍可設定</li>
+            <li>可重設／可暫停（分階段）</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="cards2" style="margin-top:14px;">
+        <article class="card reveal">
+          <h3>情緒儀式（10 分鐘）</h3>
+          <p>睡前放鬆、壓力舒緩、安靜陪伴：把「回來」變成習慣。</p>
+          <ul>
+            <li>呼吸/安撫/靜音模式</li>
+            <li>不做評分、不做比較</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <h3>回饋迴路（Beta）</h3>
+          <p>用最少的打擾蒐集體驗：你只需要按一下。</p>
+          <ul>
+            <li>結束後 1 句感受（可跳過）</li>
+            <li>匿名回饋（選配）</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="trust">
+      <div class="sectionHead reveal">
+        <h2>安全與界線摘要（Trust）</h2>
+        <p>我們不把「黏著」當 KPI；我們把「可控」當核心。你願意留下，是因為你覺得舒服。</p>
+      </div>
+
+      <div class="cards2">
+        <div class="card reveal">
+          <h3>你是主控者</h3>
+          <ul>
+            <li>互動深度、話題範圍、通知頻率由你決定</li>
+            <li>任何時候都能暫停、退出、重設</li>
+            <li>不做社交曝光、不做評分比較</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>隱私優先（Privacy-by-design）</h3>
+          <ul>
+            <li>資料處理透明：清楚告知用途與權限</li>
+            <li>資料可刪除／可匯出（依 Beta 進度逐步上線）</li>
+            <li>敏感內容分級與保護策略</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="cta">
+      <div class="container cta__inner reveal">
+        <div>
+          <h2>加入試用，或直接進入</h2>
+          <p>如果你只想先看看：直接進入 Web App。若想獲得 Beta 功能與更新通知：加入試用名單。</p>
+          <div class="ctaPills">
+            <span class="pill">不用信用卡</span>
+            <span class="pill">可匿名開始（選配）</span>
+            <span class="pill">隨時退出／重設</span>
+          </div>
+        </div>
+
+        <div class="ctaForm">
+          <a class="btn btn--primary magnet" href="#gate" style="width:100%;">回到入口卡片</a>
+          <a class="btn btn--ghost" href="/app" style="width:100%; margin-top:10px;">進入 Web App</a>
+          <div class="ctaNote" style="margin-top:10px;">
+            Web App 連結可替換為外部網址。若使用外部 URL，建議加上 <code>rel="noopener"</code>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
+          <div class="footer__desc">Soul Builder Beta｜Web App 入口｜界線可控</div>
+        </div>
+        <div class="footer__right">
+          <a href="#top">回到頂部</a>
+          <span class="sep">·</span>
+          <a href="#trust">安全與界線</a>
+          <span class="sep">·</span>
+          <a href="app.html">進入 Web App</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
