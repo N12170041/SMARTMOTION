@@ -217,7 +217,6 @@ body.menuOpen .navBackdrop{
 /* lock background scroll when menu open */
 body.menuOpen{
   overflow: hidden;
-  touch-action: none;
 }
 
 /* Make hamburger menu a scrollable panel on mobile */
@@ -298,4 +297,11 @@ body.menuOpen{
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+/* ===== Mobile menu layering + touch scroll fix (hotfix) ===== */
+.topbar{ z-index: 10002; }
+.navBackdrop{ z-index: 10000; }
+@media (max-width: 980px){
+  .mobileNav{ z-index: 10001; touch-action: pan-y; pointer-events: auto; }
 }
