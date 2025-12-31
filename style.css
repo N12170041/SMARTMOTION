@@ -76,7 +76,7 @@ figcaption{margin-top:10px;color:var(--muted2);font-size:12px}
 .softHint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--muted2);opacity:0;transition:opacity .8s ease;pointer-events:none;padding:10px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(11,16,32,.45);backdrop-filter:blur(8px)}
 .softHint.show{opacity:.86}
 .srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media (max-width: 980px){.hero{grid-template-columns:1fr;padding-top:38px}.strip__inner{grid-template-columns:1fr}.cards3{grid-template-columns:1fr}.cards2{grid-template-columns:1fr}.quotes{grid-template-columns:1fr}.cta__inner{flex-direction:column;align-items:stretch}.nav{display:none}.hamburger{display:inline-block}.mobileNav.show{display:block}}
+@media (max-width: 980px){.nav{display:none}.topbar__cta{display:none}.hamburger{display:inline-flex}.topbar__inner{justify-content:space-between}.hero{grid-template-columns:1fr;padding-top:38px}.strip__inner{grid-template-columns:1fr}.cards3{grid-template-columns:1fr}.cards2{grid-template-columns:1fr}.quotes{grid-template-columns:1fr}.cta__inner{flex-direction:column;align-items:stretch}.nav{display:none}.hamburger{display:inline-block}.mobileNav.show{display:block}}
 @media (max-width: 520px){.hero__title{font-size:34px}}
 
 /* ===== Dropdown (Desktop) & Submenu (Mobile) — Added without changing existing style ===== */
@@ -193,131 +193,104 @@ figcaption{margin-top:10px;color:var(--muted2);font-size:12px}
 }
 .page-news .statusPanel__note{ margin-top:10px; }
 
-/* ===== Definitive Mobile Menu Drawer Fix (overlay + clickable) =====
-   If you can see the dimmed page but can't click menu items, it's usually a stacking-context issue.
-   This patch:
-   1) moves mobileNav to be a full-screen fixed drawer (JS also moves node to <body> end)
-   2) forces z-index order: topbar > drawer > backdrop > page
-   3) prevents background layers from capturing touch
-*/
-#bgParticles{ pointer-events:none; }
-.topbar{ z-index: 10002 !important; }
-.navBackdrop{ z-index: 10000 !important; }
-
-@media (max-width: 980px){
-  .mobileNav{
-    position: fixed !important;
-    left: 0; right: 0; top: 0; bottom: 0;
-    z-index: 10001 !important;
-
-    display: none;
-    padding: calc(var(--topbarH, 72px) + 12px) 18px calc(22px + env(safe-area-inset-bottom));
-    background: rgba(11,16,32,.94);
-    backdrop-filter: blur(14px);
-
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-
-    pointer-events: auto !important;
-    touch-action: pan-y;
-
-    border-top: 0;
-  }
-  .mobileNav.show{ display: block !important; }
-
-  /* slightly stronger separation from background */
-  .mobileNav a, .mobileNav button{
-    width: 100%;
-  }
+/* ===== Mobile Typography (Header) ===== */
+@media (max-width: 520px){
+  .brand__name{font-size:18px}
+  .brand__en{display:none}
+  .brand__mark{transform:scale(.95)}
 }
 
-/* ===== Mobile Drawer Navigation (v20251231055939) =====
-   - Hide desktop nav + CTAs on mobile to prevent header deformation.
-   - Use off-canvas drawer (right slide-in) so it won't be blocked by desktop dropdown.
-*/
 
-@media (max-width: 980px){
-  .nav{ display:none !important; }
-  .topbar__cta{ display:none !important; }
-  .topbar__inner{ justify-content: space-between; gap: 12px; }
-  .brand__en{ display:none !important; }
+/* ===== Mobile Drawer (Unified) ===== */
+.drawerBackdrop{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(4px);
+  z-index:100000;
 }
-
-#bgParticles{ pointer-events:none; }
-
-/* Backdrop */
-.navBackdrop{
-  position: fixed;
-  inset: 0;
-  z-index: 2147482900;
-  background: rgba(0,0,0,.45);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .18s ease;
+.mobileDrawer{
+  position:fixed;
+  top:0; left:0;
+  width:min(86vw, 360px);
+  height:100dvh;
+  padding:14px 14px 18px;
+  background:rgba(11,16,32,.92);
+  border-right:1px solid rgba(255,255,255,.10);
+  box-shadow:0 40px 90px rgba(0,0,0,.45);
+  transform:translateX(-102%);
+  transition:transform .22s ease;
+  z-index:100001;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
 }
-body.menuOpen .navBackdrop{ opacity: 1; pointer-events: auto; }
-body.menuOpen{ overflow:hidden; }
+.mobileDrawer.is-open{ transform:translateX(0); }
 
-/* Drawer */
-@media (max-width: 980px){
-  .mobileNav{
-    position: fixed !important;
-    top: 0; bottom: 0; left: 0;
-    width: min(360px, 88vw);
-    z-index: 2147483000 !important;
-
-    background: rgba(11,16,32,.96) !important;
-    backdrop-filter: blur(16px);
-    border-right: 1px solid rgba(255,255,255,.10);
-    box-shadow: 24px 0 60px rgba(0,0,0,.55);
-
-    transform: translateX(-110%);
-    transition: transform .22s ease;
-
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-    touch-action: pan-y;
-    pointer-events: auto;
-
-    padding: calc(var(--topbarH, 72px) + 10px) 16px calc(18px + env(safe-area-inset-bottom));
-  }
-  .mobileNav.show{ transform: translateX(0); }
-
-  .mobileNav a, .mobileNav button{ width: 100%; }
-  .mobileNav a{
-    display:block;
-    padding: 12px 12px;
-    border-radius: 14px;
-    font-size: 15px;
-  }
-  .mobileNav a:hover{ background: rgba(255,255,255,.06); }
-
-  .mobileNav__submenu{ padding-left: 8px; }
-  .mobileNav__submenu a{
-    margin-top: 8px;
-    border: 1px solid rgba(255,255,255,.08);
-    background: rgba(255,255,255,.03);
-  }
-
-  .mobileNav__group{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding: 12px 12px;
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,.08);
-    background: rgba(255,255,255,.02);
-    color: var(--text);
-    width: 100%;
-  }
-  .mobileNav__group .arrow{ transition: transform .16s ease; }
-  .mobileNav__group[aria-expanded="true"] .arrow{ transform: rotate(180deg); }
+.mobileDrawer__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:6px 4px 12px;
 }
+.brand--drawer{
+  display:flex;
+  gap:10px;
+  align-items:baseline;
+  text-decoration:none;
+  max-width:78%;
+}
+.drawerClose{
+  width:44px; height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  color:var(--txt);
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+}
+.drawerClose:active{ transform:scale(.98); }
 
-.hamburger{ position: relative; z-index: 2147483100; }
-.topbar{ position: sticky; top: 0; z-index: 2147483050; }
+.mobileDrawer__nav{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:4px;
+}
+.mobileDrawer__nav a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 12px;
+  border-radius:14px;
+  color:var(--muted);
+  text-decoration:none;
+  border:1px solid transparent;
+  background:transparent;
+}
+.mobileDrawer__nav a:hover{ background:rgba(255,255,255,.04); color:var(--txt); }
+.mobileDrawer__nav a.is-active{
+  color:var(--txt);
+  border-color:rgba(122,162,255,.28);
+  background:rgba(122,162,255,.10);
+}
+.mobileDrawer__nav .btn{
+  margin-top:8px;
+  width:100%;
+  justify-content:center;
+}
+.drawerDivider{
+  height:1px;
+  margin:12px 6px 10px;
+  background:rgba(255,255,255,.08);
+}
+.drawerSectionTitle{
+  margin:0 6px 6px;
+  color:var(--muted2);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+body.nav-open{ overflow:hidden; }
 
-/* mobile-drawer-left build:20251231060508 */

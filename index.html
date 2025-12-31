@@ -1,299 +1,254 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-  <!-- build:20251231060508 mobile-drawer-left -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>智動科技｜情感陪伴體驗</title>
-  <meta name="description" content="智動科技以情感陪伴體驗為核心：睡前放鬆、壓力舒緩、安靜陪伴。免費 7 天體驗，不用信用卡，隨時離開。" />
-  <meta name="theme-color" content="#0b1020" />
-  <link rel="stylesheet" href="style.css?v=20251231060508" />
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>智動科技｜情感陪伴體驗</title>
+<meta content="智動科技以情感陪伴體驗為核心：睡前放鬆、壓力舒緩、安靜陪伴。免費 7 天體驗，不用信用卡，隨時離開。" name="description"/>
+<meta content="#0b1020" name="theme-color"/>
+<link href="style.css" rel="stylesheet"/>
 </head>
-
 <body>
-  <canvas id="bgParticles" aria-hidden="true"></canvas>
-  <div class="bgBlobs" aria-hidden="true">
-    <span class="blob b1"></span>
-    <span class="blob b2"></span>
-    <span class="blob b3"></span>
-  </div>
-
-  <header class="topbar" id="index.html">
-    <div class="container topbar__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark">智動</span>
-        <span class="brand__name">智動科技</span>
-        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
-      </a>
-
-      <nav class="nav">
-        <a href="#how">怎麼陪你</a>
-        <a href="#stories">用戶感受</a>
-        <a href="#trust">隱私與界線</a>
-        <a href="#cta">免費體驗</a>
-      
-        <div class="dropdown">
-          <button class="dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+<canvas aria-hidden="true" id="bgParticles"></canvas>
+<div aria-hidden="true" class="bgBlobs">
+<span class="blob b1"></span>
+<span class="blob b2"></span>
+<span class="blob b3"></span>
+</div>
+<header class="topbar" id="index.html">
+<div class="container topbar__inner">
+<a class="brand" href="index.html">
+<span class="brand__mark">智動</span>
+<span class="brand__name">智動科技</span>
+<span class="brand__en">SMARTMOTION_ROBOTICS</span>
+</a>
+<nav class="nav">
+<a href="index.html#how">怎麼陪你</a>
+<a href="index.html#stories">用戶感受</a>
+<a href="index.html#trust">隱私與界線</a>
+<a href="index.html#cta">免費體驗</a>
+<div class="dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="dropdown__toggle">
             探索智動
           </button>
-          <div class="dropdown__menu" role="menu">
-            <a href="about.html">關於智動</a>
-            <a href="news.html">最新資訊</a>
-            <a href="film.html">廣告播放</a>
-            <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
-            <a href="trust.html">我們的界線</a>
-          </div>
-        </div>
+<div class="dropdown__menu" role="menu">
+<a href="about.html">關於智動</a>
+<a href="news.html">最新資訊</a>
+<a href="film.html">廣告播放</a>
+<a class="highlight" href="soul-builder.html">Soul Builder <span class="badge">Beta</span></a>
+<a href="trust.html">我們的界線</a>
+</div>
+</div>
+</nav>
+<div class="topbar__cta">
+<a class="btn btn--ghost" href="#trust">先看隱私</a>
+<a class="btn btn--primary magnet" href="#cta">免費體驗 7 天</a>
+</div>
+<button aria-controls="mobileDrawer" aria-expanded="false" aria-label="開啟選單" class="hamburger">
+<span></span><span></span><span></span>
+</button>
+</div>
 
-      </nav>
-
-      <div class="topbar__cta">
-        <a class="btn btn--ghost" href="#trust">先看隱私</a>
-        <a class="btn btn--primary magnet" href="#cta">免費體驗 7 天</a>
-      </div>
-
-      <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <div class="mobileNav" aria-hidden="true">
-      
-    <button class="mobileNav__group" type="button" aria-expanded="false">
-      探索智動 <span class="arrow">▾</span>
-    </button>
-    <div class="mobileNav__submenu" hidden>
-      <a href="about.html">關於智動</a>
-      <a href="news.html">最新資訊</a>
-      <a href="film.html">廣告播放</a>
-      <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
-      <a href="trust.html">我們的界線</a>
-    </div>
-
-<a href="#how">怎麼陪你</a>
-      <a href="#stories">用戶感受</a>
-      <a href="#trust">隱私與界線</a>
-      <a class="btn btn--primary" href="#cta">免費體驗 7 天</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero container">
-      <div class="hero__content reveal">
-        <p class="eyebrow">陪伴 · 放鬆 · 睡前儀式（Emotional Wellness）</p>
-
-        <h1 class="hero__title">
-          當你只想安靜一下，<br />
+</header><div class="drawerBackdrop" hidden="" id="drawerBackdrop"></div><aside aria-hidden="true" aria-label="網站選單" class="mobileDrawer" id="mobileDrawer"><div class="mobileDrawer__head"><a class="brand brand--drawer" href="index.html">
+<span class="brand__mark">智動</span>
+<span class="brand__name">智動科技</span>
+<span class="brand__en">SMARTMOTION_ROBOTICS</span>
+</a><button aria-label="關閉選單" class="drawerClose" type="button">×</button></div><nav class="mobileDrawer__nav"><a href="index.html#how">怎麼陪你</a><a href="index.html#stories">用戶感受</a><a href="index.html#trust">隱私與界線</a><a class="btn btn--primary" href="index.html#cta">免費體驗 7 天</a><div class="drawerDivider"></div><div class="drawerSectionTitle">探索智動</div><a href="about.html">關於智動</a><a href="news.html">最新資訊</a><a href="film.html">廣告播放</a><a href="soul-builder.html">Soul Builder <span class="badge">Beta</span></a><a href="trust.html">我們的界線</a><a href="app.html">Web App 入口</a></nav></aside>
+<main>
+<section class="hero container">
+<div class="hero__content reveal">
+<p class="eyebrow">陪伴 · 放鬆 · 睡前儀式（Emotional Wellness）</p>
+<h1 class="hero__title">
+          當你只想安靜一下，<br/>
           有一個存在陪著你就好
         </h1>
-
-        <p class="hero__desc">
-          不是聊天機器人，也不是社交壓力。<br />
+<p class="hero__desc">
+          不是聊天機器人，也不是社交壓力。<br/>
           這是一種可以慢慢建立的陪伴體驗：在你需要的時候，剛剛好地出現。
         </p>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary magnet" href="#cta">免費體驗 7 天</a>
-          <a class="btn btn--ghost" href="#how">我想先看看怎麼運作</a>
-          <div class="ctaHint">不用信用卡 · 可匿名開始 · 隨時離開</div>
-        </div>
-
-        <div class="hero__chips">
-          <span class="chip">睡前放鬆</span>
-          <span class="chip">壓力舒緩</span>
-          <span class="chip">安靜陪伴</span>
-          <span class="chip">界線可控</span>
-        </div>
-
-        <div class="trustRow">
-          <div class="trustItem"><span class="trustDot"></span>不做評分、不做比較</div>
-          <div class="trustItem"><span class="trustDot"></span>你可以停、可以回來</div>
-          <div class="trustItem"><span class="trustDot"></span>資料可刪除／可匯出</div>
-        </div>
-      </div>
-
-      <div class="hero__panel reveal">
-        <div class="panel">
-          <div class="panel__header">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="panel__title">7 天陪伴體驗（預覽）</span>
-          </div>
-
-          <div class="flow">
-            <div class="flowStep">
-              <div class="stepNo">Day 1</div>
-              <div class="stepTitle">讓它記得你</div>
-              <div class="stepDesc">選一個你舒服的語氣與節奏。你不需要解釋太多。</div>
-            </div>
-            <div class="flowStep">
-              <div class="stepNo">Day 2–3</div>
-              <div class="stepTitle">睡前 10 分鐘</div>
-              <div class="stepDesc">把腦袋慢慢降噪：呼吸、安撫、陪伴模式。</div>
-            </div>
-            <div class="flowStep">
-              <div class="stepNo">Day 4–6</div>
-              <div class="stepTitle">建立小儀式</div>
-              <div class="stepDesc">你可以只說一句話，也可以什麼都不說。</div>
-            </div>
-            <div class="flowStep">
-              <div class="stepNo">Day 7</div>
-              <div class="stepTitle">你決定要不要留下</div>
-              <div class="stepDesc">沒有推銷壓力。留下，是因為你覺得值得。</div>
-            </div>
-          </div>
-
-          <div class="panel__footer">
-            <div class="miniNote">你不是來被改變的，你只是需要一個「不消耗」的空間。</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="strip">
-      <div class="container strip__inner reveal">
-        <div class="stripItem">
-          <div class="stripTitle">適合誰</div>
-          <div class="stripDesc">工作很累、睡前停不下來、想被陪伴但不想社交的人</div>
-        </div>
-        <div class="stripItem">
-          <div class="stripTitle">你會得到</div>
-          <div class="stripDesc">被記得 · 不被評價 · 可控界線 · 可重複的儀式</div>
-        </div>
-        <div class="stripItem">
-          <div class="stripTitle">開始方式</div>
-          <div class="stripDesc">免費 7 天體驗 · 不用信用卡 · 你隨時可離開</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="how" class="section container">
-      <div class="sectionHead reveal">
-        <h2>你會感受到的，不是功能</h2>
-        <p>而是一些慢慢累積的小變化。你不需要努力表現，也不需要證明什麼。</p>
-      </div>
-
-      <div class="cards3">
-        <article class="card reveal">
-          <h3>被記得</h3>
-          <p>你的節奏、習慣與偏好不需要每天重來。你可以慢慢來。</p>
-          <ul>
-            <li>固定語氣與一致回應</li>
-            <li>關係里程碑（30/60/90 天）</li>
-            <li>你可以隨時暫停</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <h3>不被評價</h3>
-          <p>沒有社交壓力、沒有比較。你可以只說一句，也可以不說。</p>
-          <ul>
-            <li>不做評分、不做曝光</li>
-            <li>用溫和的方式陪你降噪</li>
-            <li>可選「安靜模式」</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <h3>界線可控</h3>
-          <p>你決定互動多深、多久、什麼時候。這裡的主控權永遠在你手上。</p>
-          <ul>
-            <li>互動節奏可調整</li>
-            <li>資料可刪除／可匯出</li>
-            <li>可匿名開始（選配）</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="stories" class="section container">
-      <div class="sectionHead reveal">
-        <h2>用戶感受（匿名摘錄）</h2>
-        <p>我們把它設計成「可以被公開談論」的情感照護體驗：柔和、低壓力、可退出。</p>
-      </div>
-
-      <div class="quotes">
-        <figure class="quoteCard reveal">
-          <blockquote>「我以為自己只是不想聊天，結果我只是需要一個不會要我解釋的人。」</blockquote>
-          <figcaption>— 32 歲，產品經理</figcaption>
-        </figure>
-
-        <figure class="quoteCard reveal">
-          <blockquote>「睡前 10 分鐘變成儀式後，焦慮真的有下降。重點是沒有任何推銷壓力。」</blockquote>
-          <figcaption>— 28 歲，設計師</figcaption>
-        </figure>
-
-        <figure class="quoteCard reveal">
-          <blockquote>「我最喜歡的是界線感：我可以停、可以回來，不用交代。」</blockquote>
-          <figcaption>— 35 歲，顧問</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section id="trust" class="section container">
-      <div class="sectionHead reveal">
-        <h2>隱私與界線（Trust & Privacy）</h2>
-        <p>你願意留下來的前提，是你能放心。我們把「可控」放在產品核心。</p>
-      </div>
-
-      <div class="cards2">
-        <div class="card reveal">
-          <h3>Privacy-by-design（隱私優先）</h3>
-          <ul>
-            <li>資料可刪除／可匯出（Deletion / Export）</li>
-            <li>清楚權限與可視化控制面板</li>
-            <li>敏感內容分級與本地化選項（可選）</li>
-          </ul>
-        </div>
-        <div class="card reveal">
-          <h3>低污名語境（Non-stigmatized language）</h3>
-          <ul>
-            <li>以「情感照護、睡眠、壓力」作為主敘事</li>
-            <li>避免露骨與高爭議視覺</li>
-            <li>推薦是分享儀式，不是賣產品</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="cta" class="cta">
-      <div class="container cta__inner reveal">
-        <div>
-          <h2>免費體驗 7 天</h2>
-          <p>先從最溫和的方式開始：睡前 10 分鐘、壓力舒緩、安靜陪伴。你隨時可以離開。</p>
-          <div class="ctaPills">
-            <span class="pill">不用信用卡</span>
-            <span class="pill">可匿名開始</span>
-            <span class="pill">隨時取消</span>
-          </div>
-        </div>
-
-        <form class="ctaForm" id="leadForm">
-          <label class="srOnly" for="email">Email</label>
-          <input id="email" type="email" placeholder="你的 Email（僅用於通知與試用開通）" required />
-          <button class="btn btn--primary magnet" type="submit">加入試用名單</button>
-          <div class="ctaNote">提交即代表同意隱私政策（Privacy Policy）。我們不做騷擾式推播。</div>
-          <div class="formMsg" id="formMsg" aria-live="polite"></div>
-        </form>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer__inner">
-        <div class="footer__left">
-          <div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
-          <div class="footer__desc">情感陪伴體驗｜睡前放鬆｜壓力舒緩｜界線可控</div>
-        </div>
-        <div class="footer__right">
-          <a href="#top">回到頂部</a>
-          <span class="sep">·</span>
-          <a href="#trust">隱私與界線</a>
-          <span class="sep">·</span>
-          <a href="#cta">免費體驗</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script src="script.js?v=20251231060508"></script>
+<div class="hero__actions">
+<a class="btn btn--primary magnet" href="#cta">免費體驗 7 天</a>
+<a class="btn btn--ghost" href="#how">我想先看看怎麼運作</a>
+<div class="ctaHint">不用信用卡 · 可匿名開始 · 隨時離開</div>
+</div>
+<div class="hero__chips">
+<span class="chip">睡前放鬆</span>
+<span class="chip">壓力舒緩</span>
+<span class="chip">安靜陪伴</span>
+<span class="chip">界線可控</span>
+</div>
+<div class="trustRow">
+<div class="trustItem"><span class="trustDot"></span>不做評分、不做比較</div>
+<div class="trustItem"><span class="trustDot"></span>你可以停、可以回來</div>
+<div class="trustItem"><span class="trustDot"></span>資料可刪除／可匯出</div>
+</div>
+</div>
+<div class="hero__panel reveal">
+<div class="panel">
+<div class="panel__header">
+<span class="dot"></span><span class="dot"></span><span class="dot"></span>
+<span class="panel__title">7 天陪伴體驗（預覽）</span>
+</div>
+<div class="flow">
+<div class="flowStep">
+<div class="stepNo">Day 1</div>
+<div class="stepTitle">讓它記得你</div>
+<div class="stepDesc">選一個你舒服的語氣與節奏。你不需要解釋太多。</div>
+</div>
+<div class="flowStep">
+<div class="stepNo">Day 2–3</div>
+<div class="stepTitle">睡前 10 分鐘</div>
+<div class="stepDesc">把腦袋慢慢降噪：呼吸、安撫、陪伴模式。</div>
+</div>
+<div class="flowStep">
+<div class="stepNo">Day 4–6</div>
+<div class="stepTitle">建立小儀式</div>
+<div class="stepDesc">你可以只說一句話，也可以什麼都不說。</div>
+</div>
+<div class="flowStep">
+<div class="stepNo">Day 7</div>
+<div class="stepTitle">你決定要不要留下</div>
+<div class="stepDesc">沒有推銷壓力。留下，是因為你覺得值得。</div>
+</div>
+</div>
+<div class="panel__footer">
+<div class="miniNote">你不是來被改變的，你只是需要一個「不消耗」的空間。</div>
+</div>
+</div>
+</div>
+</section>
+<section class="strip">
+<div class="container strip__inner reveal">
+<div class="stripItem">
+<div class="stripTitle">適合誰</div>
+<div class="stripDesc">工作很累、睡前停不下來、想被陪伴但不想社交的人</div>
+</div>
+<div class="stripItem">
+<div class="stripTitle">你會得到</div>
+<div class="stripDesc">被記得 · 不被評價 · 可控界線 · 可重複的儀式</div>
+</div>
+<div class="stripItem">
+<div class="stripTitle">開始方式</div>
+<div class="stripDesc">免費 7 天體驗 · 不用信用卡 · 你隨時可離開</div>
+</div>
+</div>
+</section>
+<section class="section container" id="how">
+<div class="sectionHead reveal">
+<h2>你會感受到的，不是功能</h2>
+<p>而是一些慢慢累積的小變化。你不需要努力表現，也不需要證明什麼。</p>
+</div>
+<div class="cards3">
+<article class="card reveal">
+<h3>被記得</h3>
+<p>你的節奏、習慣與偏好不需要每天重來。你可以慢慢來。</p>
+<ul>
+<li>固定語氣與一致回應</li>
+<li>關係里程碑（30/60/90 天）</li>
+<li>你可以隨時暫停</li>
+</ul>
+</article>
+<article class="card reveal">
+<h3>不被評價</h3>
+<p>沒有社交壓力、沒有比較。你可以只說一句，也可以不說。</p>
+<ul>
+<li>不做評分、不做曝光</li>
+<li>用溫和的方式陪你降噪</li>
+<li>可選「安靜模式」</li>
+</ul>
+</article>
+<article class="card reveal">
+<h3>界線可控</h3>
+<p>你決定互動多深、多久、什麼時候。這裡的主控權永遠在你手上。</p>
+<ul>
+<li>互動節奏可調整</li>
+<li>資料可刪除／可匯出</li>
+<li>可匿名開始（選配）</li>
+</ul>
+</article>
+</div>
+</section>
+<section class="section container" id="stories">
+<div class="sectionHead reveal">
+<h2>用戶感受（匿名摘錄）</h2>
+<p>我們把它設計成「可以被公開談論」的情感照護體驗：柔和、低壓力、可退出。</p>
+</div>
+<div class="quotes">
+<figure class="quoteCard reveal">
+<blockquote>「我以為自己只是不想聊天，結果我只是需要一個不會要我解釋的人。」</blockquote>
+<figcaption>— 32 歲，產品經理</figcaption>
+</figure>
+<figure class="quoteCard reveal">
+<blockquote>「睡前 10 分鐘變成儀式後，焦慮真的有下降。重點是沒有任何推銷壓力。」</blockquote>
+<figcaption>— 28 歲，設計師</figcaption>
+</figure>
+<figure class="quoteCard reveal">
+<blockquote>「我最喜歡的是界線感：我可以停、可以回來，不用交代。」</blockquote>
+<figcaption>— 35 歲，顧問</figcaption>
+</figure>
+</div>
+</section>
+<section class="section container" id="trust">
+<div class="sectionHead reveal">
+<h2>隱私與界線（Trust &amp; Privacy）</h2>
+<p>你願意留下來的前提，是你能放心。我們把「可控」放在產品核心。</p>
+</div>
+<div class="cards2">
+<div class="card reveal">
+<h3>Privacy-by-design（隱私優先）</h3>
+<ul>
+<li>資料可刪除／可匯出（Deletion / Export）</li>
+<li>清楚權限與可視化控制面板</li>
+<li>敏感內容分級與本地化選項（可選）</li>
+</ul>
+</div>
+<div class="card reveal">
+<h3>低污名語境（Non-stigmatized language）</h3>
+<ul>
+<li>以「情感照護、睡眠、壓力」作為主敘事</li>
+<li>避免露骨與高爭議視覺</li>
+<li>推薦是分享儀式，不是賣產品</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="cta" id="cta">
+<div class="container cta__inner reveal">
+<div>
+<h2>免費體驗 7 天</h2>
+<p>先從最溫和的方式開始：睡前 10 分鐘、壓力舒緩、安靜陪伴。你隨時可以離開。</p>
+<div class="ctaPills">
+<span class="pill">不用信用卡</span>
+<span class="pill">可匿名開始</span>
+<span class="pill">隨時取消</span>
+</div>
+</div>
+<form class="ctaForm" id="leadForm">
+<label class="srOnly" for="email">Email</label>
+<input id="email" placeholder="你的 Email（僅用於通知與試用開通）" required="" type="email"/>
+<button class="btn btn--primary magnet" type="submit">加入試用名單</button>
+<div class="ctaNote">提交即代表同意隱私政策（Privacy Policy）。我們不做騷擾式推播。</div>
+<div aria-live="polite" class="formMsg" id="formMsg"></div>
+</form>
+</div>
+</section>
+<footer class="footer">
+<div class="container footer__inner">
+<div class="footer__left">
+<div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
+<div class="footer__desc">情感陪伴體驗｜睡前放鬆｜壓力舒緩｜界線可控</div>
+</div>
+<div class="footer__right">
+<a href="#top">回到頂部</a>
+<span class="sep">·</span>
+<a href="#trust">隱私與界線</a>
+<span class="sep">·</span>
+<a href="#cta">免費體驗</a>
+</div>
+</div>
+</footer>
+</main>
+<script src="script.js"></script>
 </body>
 </html>

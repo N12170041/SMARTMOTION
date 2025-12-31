@@ -3,30 +3,81 @@
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
 
-  // Mobile nav
+  
+  // Mobile navigation (drawer-first; fallback supported)
   const burger = $(".hamburger");
-  const mobileNav = $(".mobileNav");
-  // Move mobileNav to body end to avoid stacking-context issues on mobile browsers
-  // (sticky header + backdrop-filter can make the menu visible-but-unclickable)
-  if (mobileNav && mobileNav.parentElement !== document.body) {
-    document.body.appendChild(mobileNav);
-  }
+  const drawer = $("#mobileDrawer");
+  const backdrop = $("#drawerBackdrop");
+  const drawerClose = drawer ? $(".drawerClose", drawer) : null;
 
-  if (burger && mobileNav) {
+  const lockScroll = () => {
+    const y = window.scrollY || 0;
+    document.body.dataset.scrollY = String(y);
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${y}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.classList.add("nav-open");
+  };
+
+  const unlockScroll = () => {
+    const y = parseInt(document.body.dataset.scrollY || "0", 10) || 0;
+    document.body.classList.remove("nav-open");
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    window.scrollTo(0, y);
+  };
+
+  const openDrawer = () => {
+    if (!burger || !drawer || !backdrop) return;
+    burger.setAttribute("aria-expanded", "true");
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    backdrop.hidden = false;
+    lockScroll();
+  };
+
+  const closeDrawer = () => {
+    if (!burger || !drawer || !backdrop) return;
+    burger.setAttribute("aria-expanded", "false");
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    backdrop.hidden = true;
+    unlockScroll();
+  };
+
+  if (burger && drawer && backdrop) {
     burger.addEventListener("click", () => {
-      const expanded = burger.getAttribute("aria-expanded") === "true";
-      burger.setAttribute("aria-expanded", String(!expanded));
-      mobileNav.classList.toggle("show");
-      mobileNav.setAttribute("aria-hidden", expanded ? "true" : "false");
+      const isOpen = drawer.classList.contains("is-open");
+      isOpen ? closeDrawer() : openDrawer();
     });
-    $$(".mobileNav a").forEach(a => a.addEventListener("click", () => {
-      burger.setAttribute("aria-expanded", "false");
-      mobileNav.classList.remove("show");
-      mobileNav.setAttribute("aria-hidden", "true");
-    }));
+    drawerClose?.addEventListener("click", closeDrawer);
+    backdrop.addEventListener("click", closeDrawer);
+    $$(".mobileDrawer__nav a").forEach(a => a.addEventListener("click", closeDrawer));
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape" && drawer.classList.contains("is-open")) closeDrawer();
+    });
+  } else {
+    // Fallback: legacy mobileNav (if present on old pages)
+    const mobileNav = $(".mobileNav");
+    if (burger && mobileNav) {
+      burger.addEventListener("click", () => {
+        const expanded = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!expanded));
+        mobileNav.classList.toggle("show");
+        mobileNav.setAttribute("aria-hidden", expanded ? "true" : "false");
+      });
+      $$(".mobileNav a").forEach(a => a.addEventListener("click", () => {
+        burger.setAttribute("aria-expanded", "false");
+        mobileNav.classList.remove("show");
+        mobileNav.setAttribute("aria-hidden", "true");
+      }));
+    }
   }
 
-  // Scroll reveal
+// Scroll reveal
   const revealEls = $$(".reveal");
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
@@ -167,95 +218,4 @@
 
   resize();
   requestAnimationFrame(draw);
-})();
-
-// ===== Mobile Drawer Navigation (v20251231055939) =====
-(function(){
-  const $ = (s, root=document) => root.querySelector(s);
-  const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
-
-  const burger = $(".hamburger");
-  const mobileNav = $(".mobileNav");
-  const topbar = $(".topbar");
-
-  const setTopbarH = () => {
-    if (!topbar) return;
-    const h = Math.round(topbar.getBoundingClientRect().height);
-    document.documentElement.style.setProperty("--topbarH", h + "px");
-  };
-  setTopbarH();
-  window.addEventListener("resize", setTopbarH);
-
-  // Move drawer to end of body to avoid stacking-context issues
-  if (mobileNav && mobileNav.parentElement !== document.body) {
-    document.body.appendChild(mobileNav);
-  }
-
-  // Backdrop
-  let backdrop = $(".navBackdrop");
-  if (!backdrop) {
-    backdrop = document.createElement("div");
-    backdrop.className = "navBackdrop";
-    backdrop.setAttribute("aria-hidden", "true");
-    document.body.appendChild(backdrop);
-  }
-
-  const isMobile = () => window.matchMedia("(max-width: 980px)").matches;
-
-  const closeMenu = () => {
-    if (!burger || !mobileNav) return;
-    burger.setAttribute("aria-expanded", "false");
-    mobileNav.classList.remove("show");
-    mobileNav.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("menuOpen");
-
-    const g = $(".mobileNav__group");
-    const sub = $(".mobileNav__submenu");
-    if (g && sub) {
-      g.setAttribute("aria-expanded", "false");
-      sub.hidden = true;
-    }
-  };
-
-  const openMenu = () => {
-    if (!burger || !mobileNav) return;
-    if (!isMobile()) return;
-    setTopbarH();
-    burger.setAttribute("aria-expanded", "true");
-    mobileNav.classList.add("show");
-    mobileNav.setAttribute("aria-hidden", "false");
-    document.body.classList.add("menuOpen");
-  };
-
-  if (burger && mobileNav) {
-    mobileNav.setAttribute("aria-hidden", "true");
-    burger.setAttribute("aria-expanded", "false");
-
-    burger.addEventListener("click", (e) => {
-      e.preventDefault();
-      const expanded = burger.getAttribute("aria-expanded") === "true";
-      expanded ? closeMenu() : openMenu();
-    });
-
-    backdrop.addEventListener("click", closeMenu);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
-
-    $$(".mobileNav a").forEach(a => a.addEventListener("click", closeMenu));
-
-    const g = $(".mobileNav__group");
-    const sub = $(".mobileNav__submenu");
-    if (g && sub) {
-      g.addEventListener("click", () => {
-        const expanded = g.getAttribute("aria-expanded") === "true";
-        g.setAttribute("aria-expanded", String(!expanded));
-        sub.hidden = expanded;
-      });
-    }
-  }
-
-  window.addEventListener("resize", () => {
-    if (!isMobile()) closeMenu();
-  });
 })();

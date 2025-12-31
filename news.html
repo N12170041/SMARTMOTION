@@ -1,200 +1,182 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>最新資訊｜智動科技 SMARTMOTION_ROBOTICS</title>
-  <meta name="description" content="智動科技（SMARTMOTION_ROBOTICS）2031 最新產品進度、版本更新與 Beta 公測節點。" />
-  <meta name="theme-color" content="#0b1020" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>最新資訊｜智動科技 SMARTMOTION_ROBOTICS</title>
+<meta content="智動科技（SMARTMOTION_ROBOTICS）2031 最新產品進度、版本更新與 Beta 公測節點。" name="description"/>
+<meta content="#0b1020" name="theme-color"/>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body class="page-news">
-
 <canvas id="bgParticles"></canvas>
 <div class="bgBlobs">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
 </div>
-
 <header class="topbar">
-  <div class="container topbar__inner">
-    <a class="brand" href="index.html">
-      <span class="brand__mark">智動</span>
-      <span class="brand__name">智動科技</span>
-      <span class="brand__en">SMARTMOTION_ROBOTICS</span>
-    </a>
-
-    <nav class="nav">
-      <a href="index.html#how">怎麼陪你</a>
-      <a href="index.html#stories">用戶感受</a>
-      <a href="index.html#trust">隱私與界線</a>
-
-      <div class="dropdown">
-        <button class="dropdown__toggle">探索智動</button>
-        <div class="dropdown__menu">
-          <a href="about.html">關於智動</a>
-          <a href="news.html" class="highlight">最新資訊</a>
-          <a href="film.html">廣告播放</a>
-          <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
-          <a href="trust.html">我們的界線</a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="topbar__cta">
-      <a class="btn btn--primary magnet" href="index.html#cta">免費體驗 7 天</a>
-    </div>
-  </div>
-</header>
-
+<div class="container topbar__inner">
+<a class="brand" href="index.html">
+<span class="brand__mark">智動</span>
+<span class="brand__name">智動科技</span>
+<span class="brand__en">SMARTMOTION_ROBOTICS</span>
+</a>
+<nav class="nav">
+<a href="index.html#how">怎麼陪你</a>
+<a href="index.html#stories">用戶感受</a>
+<a href="index.html#trust">隱私與界線</a>
+<div class="dropdown">
+<button class="dropdown__toggle">探索智動</button>
+<div class="dropdown__menu">
+<a href="about.html">關於智動</a>
+<a class="highlight" href="news.html">最新資訊</a>
+<a href="film.html">廣告播放</a>
+<a class="highlight" href="soul-builder.html">Soul Builder <span class="badge">Beta</span></a>
+<a href="trust.html">我們的界線</a>
+</div>
+</div>
+</nav>
+<div class="topbar__cta">
+<a class="btn btn--primary magnet" href="index.html#cta">免費體驗 7 天</a>
+</div>
+<button aria-controls="mobileDrawer" aria-expanded="false" aria-label="開啟選單" class="hamburger"><span></span><span></span><span></span></button></div>
+</header><div class="drawerBackdrop" hidden="" id="drawerBackdrop"></div><aside aria-hidden="true" aria-label="網站選單" class="mobileDrawer" id="mobileDrawer"><div class="mobileDrawer__head"><a class="brand brand--drawer" href="index.html">
+<span class="brand__mark">智動</span>
+<span class="brand__name">智動科技</span>
+<span class="brand__en">SMARTMOTION_ROBOTICS</span>
+</a><button aria-label="關閉選單" class="drawerClose" type="button">×</button></div><nav class="mobileDrawer__nav"><a href="index.html#how">怎麼陪你</a><a href="index.html#stories">用戶感受</a><a href="index.html#trust">隱私與界線</a><a class="btn btn--primary" href="index.html#cta">免費體驗 7 天</a><div class="drawerDivider"></div><div class="drawerSectionTitle">探索智動</div><a href="about.html">關於智動</a><a class="is-active" href="news.html">最新資訊</a><a href="film.html">廣告播放</a><a href="soul-builder.html">Soul Builder <span class="badge">Beta</span></a><a href="trust.html">我們的界線</a><a href="app.html">Web App 入口</a></nav></aside>
 <!-- Hero -->
 <section class="hero container reveal">
-  <div>
-  <span class="eyebrow">News & Updates</span>
-  <h1 class="hero__title">產品正在前進。</h1>
-  <p class="hero__desc">
+<div>
+<span class="eyebrow">News &amp; Updates</span>
+<h1 class="hero__title">產品正在前進。</h1>
+<p class="hero__desc">
     這裡紀錄 SMARTMOTION_ROBOTICS 在 2031 年的重要產品節點、  
     版本更新與 Beta 公測進度。
   </p>
 </div>
-
-  <aside class="glass card statusPanel" aria-label="目前版本與公測狀態">
-    <div class="statusPanel__head">
-      <h3>目前版本 / 公測狀態</h3>
-      <span class="badge">2031</span>
-    </div>
-
-    <div class="statusPanel__row">
-      <div class="statusPanel__k">版本</div>
-      <div class="statusPanel__v">Soul Builder Beta · v0.9</div>
-    </div>
-    <div class="statusPanel__row">
-      <div class="statusPanel__k">狀態</div>
-      <div class="statusPanel__v"><span class="pill pill--on">封閉 Beta</span></div>
-    </div>
-    <div class="statusPanel__row">
-      <div class="statusPanel__k">下一步</div>
-      <div class="statusPanel__v">公開公測（預計 2031 下半年）</div>
-    </div>
-
-    <div class="statusPanel__note muted small">
+<aside aria-label="目前版本與公測狀態" class="glass card statusPanel">
+<div class="statusPanel__head">
+<h3>目前版本 / 公測狀態</h3>
+<span class="badge">2031</span>
+</div>
+<div class="statusPanel__row">
+<div class="statusPanel__k">版本</div>
+<div class="statusPanel__v">Soul Builder Beta · v0.9</div>
+</div>
+<div class="statusPanel__row">
+<div class="statusPanel__k">狀態</div>
+<div class="statusPanel__v"><span class="pill pill--on">封閉 Beta</span></div>
+</div>
+<div class="statusPanel__row">
+<div class="statusPanel__k">下一步</div>
+<div class="statusPanel__v">公開公測（預計 2031 下半年）</div>
+</div>
+<div class="statusPanel__note muted small">
       想更早收到通知？回首頁加入試用名單。
     </div>
-    <a class="btn btn--ghost" href="index.html#cta">加入試用名單</a>
-  </aside>
-
+<a class="btn btn--ghost" href="index.html#cta">加入試用名單</a>
+</aside>
 </section>
-
 <!-- 2031 最新產品速報 -->
 <section class="section container reveal">
-  <h2>2031 當期最新產品速報</h2>
-
-  <div class="cards">
-    <div class="card glass">
-      <h3>Soul Builder（Beta）</h3>
-      <p>
+<h2>2031 當期最新產品速報</h2>
+<div class="cards">
+<div class="card glass">
+<h3>Soul Builder（Beta）</h3>
+<p>
         第一階段核心載體已完成基礎架構建置，  
         包含角色設定、長期互動記憶與安全邊界模組。
       </p>
-      <p class="muted small">
+<p class="muted small">
         狀態：封閉 Beta 進行中
       </p>
-    </div>
-
-    <div class="card glass">
-      <h3>情緒互動模型 v1.3</h3>
-      <p>
+</div>
+<div class="card glass">
+<h3>情緒互動模型 v1.3</h3>
+<p>
         強化回應穩定度與情緒連貫性，  
         適用於長時間、低刺激互動情境。
       </p>
-      <p class="muted small">
+<p class="muted small">
         狀態：已部署至測試環境
       </p>
-    </div>
-  </div>
+</div>
+</div>
 </section>
-
 <!-- 版本更新摘要 -->
 <section class="section container reveal">
-  <h2>版本更新摘要</h2>
-
-  <ul class="timeline">
-    <li>
-      <span class="time">2031 Q1</span>
-      <p>角色記憶系統優化，提升長期互動一致性。</p>
-    </li>
-    <li>
-      <span class="time">2031 Q2</span>
-      <p>加入多語情境支援與安全回應邊界調整。</p>
-    </li>
-    <li>
-      <span class="time">2031 Q3（進行中）</span>
-      <p>測試專業化互動模板（睡前陪伴、壓力舒緩）。</p>
-    </li>
-  </ul>
+<h2>版本更新摘要</h2>
+<ul class="timeline">
+<li>
+<span class="time">2031 Q1</span>
+<p>角色記憶系統優化，提升長期互動一致性。</p>
+</li>
+<li>
+<span class="time">2031 Q2</span>
+<p>加入多語情境支援與安全回應邊界調整。</p>
+</li>
+<li>
+<span class="time">2031 Q3（進行中）</span>
+<p>測試專業化互動模板（睡前陪伴、壓力舒緩）。</p>
+</li>
+</ul>
 </section>
-
 <!-- Beta / 公測節點 -->
 <section class="section container reveal">
-  <h2>Beta / 公測節點</h2>
-
-  <div class="grid2">
-    <div class="glass card">
-      <h3>封閉 Beta</h3>
-      <p>
+<h2>Beta / 公測節點</h2>
+<div class="grid2">
+<div class="glass card">
+<h3>封閉 Beta</h3>
+<p>
         邀請制測試，重點驗證互動品質與安全性。
       </p>
-      <p class="muted small">目前階段</p>
-    </div>
-
-    <div class="glass card">
-      <h3>公開公測（預計）</h3>
-      <p>
+<p class="muted small">目前階段</p>
+</div>
+<div class="glass card">
+<h3>公開公測（預計）</h3>
+<p>
         開放更多使用者參與，  
         收集跨情境互動回饋。
       </p>
-      <p class="muted small">預計：2031 下半年</p>
-    </div>
-  </div>
+<p class="muted small">預計：2031 下半年</p>
+</div>
+</div>
 </section>
-
 <!-- 訂閱更新 -->
 <section class="section container reveal">
-  <h2>訂閱產品更新</h2>
-  <p class="muted">
+<h2>訂閱產品更新</h2>
+<p class="muted">
     留下 Email，我們會在重要版本與公測開放時通知你。
   </p>
-
-  <form class="ctaForm">
-    <input type="email" placeholder="you@example.com" required />
-    <button class="btn btn--primary magnet" type="submit">
+<form class="ctaForm">
+<input placeholder="you@example.com" required="" type="email"/>
+<button class="btn btn--primary magnet" type="submit">
       訂閱更新
     </button>
-  </form>
+</form>
 </section>
-
 <!-- CTA -->
 <section class="cta container reveal">
-  <div class="cta__inner">
-    <div>
-      <h2>想更早體驗？</h2>
-      <p>加入試用名單，第一時間取得 Soul Builder 開放通知。</p>
-    </div>
-    <div class="hero__actions">
-      <a class="btn btn--primary magnet" href="index.html#cta">加入試用名單</a>
-      <a class="btn btn--ghost" href="soul-builder.html">了解 Soul Builder</a>
-    </div>
-  </div>
+<div class="cta__inner">
+<div>
+<h2>想更早體驗？</h2>
+<p>加入試用名單，第一時間取得 Soul Builder 開放通知。</p>
+</div>
+<div class="hero__actions">
+<a class="btn btn--primary magnet" href="index.html#cta">加入試用名單</a>
+<a class="btn btn--ghost" href="soul-builder.html">了解 Soul Builder</a>
+</div>
+</div>
 </section>
-
 <footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
-    <div class="footer__desc">情感陪伴的核心載體</div>
-  </div>
+<div class="container footer__inner">
+<div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
+<div class="footer__desc">情感陪伴的核心載體</div>
+</div>
 </footer>
-
 <script src="script.js"></script>
 </body>
 </html>

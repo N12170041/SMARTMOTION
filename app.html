@@ -1,13 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>登入｜Soul Builder Web App（Beta）</title>
-  <meta name="description" content="Soul Builder Web App 偽啟動器登入頁。加入試用名單或進入 Web App。" />
-  <meta name="theme-color" content="#0b1020" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>登入｜Soul Builder Web App（Beta）</title>
+<meta content="Soul Builder Web App 偽啟動器登入頁。加入試用名單或進入 Web App。" name="description"/>
+<meta content="#0b1020" name="theme-color"/>
+<link href="style.css" rel="stylesheet"/>
+<style>
     /* ===== Page: App (Login Launcher) ===== */
     body.page-app{ min-height:100vh; }
     body.page-app .topbar{ position:relative; z-index:6; }
@@ -224,201 +225,142 @@
       animation:sp 1s linear infinite;
     }
     @keyframes sp{ to{ transform:rotate(360deg); } }
-  
-    /* Audio controls */
-    body.page-app input[type="range"]{
-      accent-color: rgba(122,162,255,.85);
-      height: 2px;
-      background: transparent;
-    }
-    body.page-app input[type="range"]::-webkit-slider-runnable-track{
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.16);
-    }
-    body.page-app input[type="range"]::-webkit-slider-thumb{
-      -webkit-appearance: none;
-      width: 14px; height: 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.92);
-      margin-top: -5px;
-      box-shadow: 0 0 0 4px rgba(122,162,255,.14);
-    }
   </style>
 </head>
-
 <body class="page-app">
-  <div class="loginBg" aria-hidden="true">
-    <video src="等待.mp4" autoplay muted loop playsinline preload="metadata"></video>
-  </div>
-
-  <canvas id="bgParticles" aria-hidden="true"></canvas>
-  <div class="bgBlobs" aria-hidden="true">
-    <span class="blob b1"></span>
-    <span class="blob b2"></span>
-    <span class="blob b3"></span>
-  </div>
-
-  <header class="topbar" id="top">
-    <div class="container topbar__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark">智動</span>
-        <span class="brand__name">智動科技</span>
-        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
-      </a>
-
-      <nav class="nav">
-        <a href="soul-builder.html">Soul Builder</a>
-        <a href="trust.html">我們的界線</a>
-        <a href="film.html">廣告播放</a>
-      </nav>
-
-      <div class="topbar__cta">
-        <a class="btn btn--ghost" href="soul-builder.html#cta">加入試用</a>
-      </div>
-
-      <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <div class="mobileNav" aria-hidden="true">
-      <a href="soul-builder.html">Soul Builder</a>
-      <a href="trust.html">我們的界線</a>
-      <a href="film.html">廣告播放</a>
-      <a class="btn btn--primary" href="soul-builder.html#cta">加入試用</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="stage container">
-      <div class="loginCard reveal">
-        <div class="loginCard__head">
-          <p class="eyebrow">Web App · 啟動器 <span class="badge" style="margin-left:8px;">Beta</span></p>
-          <h1 class="loginTitle">登入 Soul Builder</h1>
-          <p class="loginSub">你可以先登入體驗流程，再決定是否加入試用。</p>
-
-          <div class="betaRow">
-            <div class="betaBadge"><span class="betaDot"></span> BETA ACCESS</div>
-            <div class="safeNote">界線可控 · 可退出 · 可重設</div>
-          </div>
-        
-          <div class="rowBetween" style="margin-top:12px;">
-            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-              <button class="btn btn--ghost" id="audioBtn" type="button" style="min-height:38px;padding:0 12px;">
-                啟用背景音訊
-              </button>
-              <span id="audioState" style="color:var(--muted2);font-size:12px;">目前靜音（瀏覽器限制自動播放聲音）</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span style="color:var(--muted2);font-size:12px;">音量</span>
-              <input id="audioVol" type="range" min="0" max="1" step="0.05" value="0.6" style="width:140px;" />
-            </div>
-          </div>
+<div aria-hidden="true" class="loginBg">
+<video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="等待.mp4"></video>
+</div>
+<canvas aria-hidden="true" id="bgParticles"></canvas>
+<div aria-hidden="true" class="bgBlobs">
+<span class="blob b1"></span>
+<span class="blob b2"></span>
+<span class="blob b3"></span>
+</div>
+<header class="topbar" id="top">
+<div class="container topbar__inner">
+<a class="brand" href="index.html">
+<span class="brand__mark">智動</span>
+<span class="brand__name">智動科技</span>
+<span class="brand__en">SMARTMOTION_ROBOTICS</span>
+</a>
+<nav class="nav">
+<a href="soul-builder.html">Soul Builder</a>
+<a href="trust.html">我們的界線</a>
+<a href="film.html">廣告播放</a>
+</nav>
+<div class="topbar__cta">
+<a class="btn btn--ghost" href="soul-builder.html#cta">加入試用</a>
+</div>
+<button aria-controls="mobileDrawer" aria-expanded="false" aria-label="開啟選單" class="hamburger">
+<span></span><span></span><span></span>
+</button>
 </div>
 
-        <div class="loginCard__body">
-          <form id="loginForm" autocomplete="on">
-            <div class="field">
-              <label for="account">帳號 / Email</label>
-              <input id="account" name="account" type="text" placeholder="name@example.com" required />
-            </div>
-
-            <div class="field pwRow">
-              <label for="password">密碼</label>
-              <input id="password" name="password" type="password" placeholder="••••••••" required />
-              <button class="pwToggle" id="pwToggle" type="button" aria-pressed="false">顯示</button>
-            </div>
-
-            <div class="rowBetween">
-              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-                <input type="checkbox" id="remember" style="accent-color: rgba(122,162,255,.85);" />
+</header><div class="drawerBackdrop" hidden="" id="drawerBackdrop"></div><aside aria-hidden="true" aria-label="網站選單" class="mobileDrawer" id="mobileDrawer"><div class="mobileDrawer__head"><a class="brand brand--drawer" href="index.html">
+<span class="brand__mark">智動</span>
+<span class="brand__name">智動科技</span>
+<span class="brand__en">SMARTMOTION_ROBOTICS</span>
+</a><button aria-label="關閉選單" class="drawerClose" type="button">×</button></div><nav class="mobileDrawer__nav"><a href="index.html#how">怎麼陪你</a><a href="index.html#stories">用戶感受</a><a href="index.html#trust">隱私與界線</a><a class="btn btn--primary" href="index.html#cta">免費體驗 7 天</a><div class="drawerDivider"></div><div class="drawerSectionTitle">探索智動</div><a href="about.html">關於智動</a><a href="news.html">最新資訊</a><a href="film.html">廣告播放</a><a href="soul-builder.html">Soul Builder <span class="badge">Beta</span></a><a href="trust.html">我們的界線</a><a class="is-active" href="app.html">Web App 入口</a></nav></aside>
+<main>
+<section class="stage container">
+<div class="loginCard reveal">
+<div class="loginCard__head">
+<p class="eyebrow">Web App · 偽啟動器 <span class="badge" style="margin-left:8px;">Beta</span></p>
+<h1 class="loginTitle">登入 Soul Builder</h1>
+<p class="loginSub">這不是實際 App，而是入口橋接頁。你可以先登入體驗流程，再決定是否加入試用。</p>
+<div class="betaRow">
+<div class="betaBadge"><span class="betaDot"></span> BETA ACCESS</div>
+<div class="safeNote">界線可控 · 可退出 · 可重設</div>
+</div>
+</div>
+<div class="loginCard__body">
+<form autocomplete="on" id="loginForm">
+<div class="field">
+<label for="account">帳號 / Email</label>
+<input id="account" name="account" placeholder="name@example.com" required="" type="text"/>
+</div>
+<div class="field pwRow">
+<label for="password">密碼</label>
+<input id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button aria-pressed="false" class="pwToggle" id="pwToggle" type="button">顯示</button>
+</div>
+<div class="rowBetween">
+<label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+<input id="remember" style="accent-color: rgba(122,162,255,.85);" type="checkbox"/>
                 記住我（本機）
               </label>
-              <a href="#" id="forgotLink">忘記密碼</a>
-            </div>
-
-            <div class="actions">
-              <button class="btn btn--primary magnet" id="loginBtn" type="submit">
+<a href="#" id="forgotLink">忘記密碼</a>
+</div>
+<div class="actions">
+<button class="btn btn--primary magnet" id="loginBtn" type="submit">
                 登入（模擬）
               </button>
-              <button class="btn btn--ghost" id="guestBtn" type="button">
+<button class="btn btn--ghost" id="guestBtn" type="button">
                 以訪客模式啟動
               </button>
+</div>
+<div class="tiny">
+              提示：這是「偽啟動器」頁面。提交後會顯示一個簡易啟動面板，用來模擬進入 App 的節奏。<br/>
+              若你有真正的 Web App 入口，將此頁的「進入 Web App」連結改成你的外部 URL 或 <code>/app</code> 即可。
             </div>
-
-            <div class="tiny">
-              提示：這是「啟動器」頁面。提交後會顯示一個簡易啟動面板，用來模擬進入 App 的節奏。<br />
-              
-            </div>
-
-            <div class="formMsg" id="loginMsg" aria-live="polite" style="margin-top:12px;"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer" style="position:relative; z-index:5;">
-      <div class="container footer__inner">
-        <div class="footer__left">
-          <div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
-          <div class="footer__desc">App Launcher（Demo）｜隱私與界線優先</div>
-        </div>
-        <div class="footer__right">
-          <a href="trust.html">界線</a>
-          <span class="sep">·</span>
-          <a href="soul-builder.html">Soul Builder</a>
-          <span class="sep">·</span>
-          <a href="index.html">回官網</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- Fake launcher overlay -->
-  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="launcher" role="document">
-      <div class="launcher__head">
-        <div>
-          <div class="launcher__title">Soul Builder · 啟動面板（Demo）</div>
-          <div class="gateSub" id="sessionLabel">Session: -</div>
-        </div>
-        <button class="btn btn--ghost" id="closeOverlay" type="button">關閉</button>
-      </div>
-
-      <div class="tiles">
-        <div class="tile">
-          <h3>Start</h3>
-          <p>以最少步驟開始互動。你的節奏由你決定。</p>
-        </div>
-        <div class="tile">
-          <h3>Boundaries</h3>
-          <p>先把話題範圍與互動深度設好，降低社交壓力。</p>
-        </div>
-        <div class="tile">
-          <h3>Privacy</h3>
-          <p>資料用途與權限清楚透明；可退出、可重設。</p>
-        </div>
-      </div>
-
-      <div class="launcher__foot">
-        <a class="btn btn--ghost" href="trust.html">先看界線</a>
-        <a class="btn btn--primary magnet" href="Web_App.html" id="goApp">進入 Web App</a>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-  <script>
+<div aria-live="polite" class="formMsg" id="loginMsg" style="margin-top:12px;"></div>
+</form>
+</div>
+</div>
+</section>
+<footer class="footer" style="position:relative; z-index:5;">
+<div class="container footer__inner">
+<div class="footer__left">
+<div class="footer__brand">智動科技 SMARTMOTION_ROBOTICS</div>
+<div class="footer__desc">App Launcher（Demo）｜隱私與界線優先</div>
+</div>
+<div class="footer__right">
+<a href="trust.html">界線</a>
+<span class="sep">·</span>
+<a href="soul-builder.html">Soul Builder</a>
+<span class="sep">·</span>
+<a href="index.html">回官網</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Fake launcher overlay -->
+<div aria-hidden="true" aria-modal="true" class="overlay" id="overlay" role="dialog">
+<div class="launcher" role="document">
+<div class="launcher__head">
+<div>
+<div class="launcher__title">Soul Builder · 啟動面板（Demo）</div>
+<div class="gateSub" id="sessionLabel">Session: -</div>
+</div>
+<button class="btn btn--ghost" id="closeOverlay" type="button">關閉</button>
+</div>
+<div class="tiles">
+<div class="tile">
+<h3>Start</h3>
+<p>以最少步驟開始互動。你的節奏由你決定。</p>
+</div>
+<div class="tile">
+<h3>Boundaries</h3>
+<p>先把話題範圍與互動深度設好，降低社交壓力。</p>
+</div>
+<div class="tile">
+<h3>Privacy</h3>
+<p>資料用途與權限清楚透明；可退出、可重設。</p>
+</div>
+</div>
+<div class="launcher__foot">
+<a class="btn btn--ghost" href="trust.html">先看界線</a>
+<a class="btn btn--primary magnet" href="/app" id="goApp">進入 Web App</a>
+</div>
+</div>
+</div>
+<script src="script.js"></script>
+<script>
     (function(){
       const $ = (s, el=document) => el.querySelector(s);
 
       const form = $("#loginForm");
-
-      const bgVideo = document.querySelector(".loginBg video");
-      const audioBtn = $("#audioBtn");
-      const audioState = $("#audioState");
-      const audioVol = $("#audioVol");
       const account = $("#account");
       const password = $("#password");
       const remember = $("#remember");
@@ -439,48 +381,6 @@
         if(saved) account.value = saved;
         remember.checked = rem;
       } catch(e){}
-
-      
-      // Background audio: browsers block autoplay with sound. Enable on user gesture.
-      const setAudioState = (on) => {
-        if(!audioState) return;
-        audioState.textContent = on ? "背景音訊已啟用" : "目前靜音（瀏覽器限制自動播放聲音）";
-      };
-
-      if(bgVideo){
-        bgVideo.volume = 0.6;
-      }
-      if(audioVol && bgVideo){
-        audioVol.addEventListener("input", () => {
-          bgVideo.volume = Number(audioVol.value);
-        });
-      }
-      if(audioBtn && bgVideo){
-        audioBtn.addEventListener("click", async () => {
-          const on = audioBtn.dataset.on === "1";
-          if(on){
-            bgVideo.muted = true;
-            audioBtn.dataset.on = "0";
-            audioBtn.textContent = "啟用背景音訊";
-            setAudioState(false);
-            return;
-          }
-          try{
-            bgVideo.muted = false;
-            bgVideo.volume = Number(audioVol ? audioVol.value : 0.6);
-            await bgVideo.play();
-            audioBtn.dataset.on = "1";
-            audioBtn.textContent = "關閉背景音訊";
-            setAudioState(true);
-          }catch(err){
-            // still blocked
-            bgVideo.muted = true;
-            audioBtn.dataset.on = "0";
-            audioBtn.textContent = "啟用背景音訊";
-            setAudioState(false);
-          }
-        });
-      }
 
       pwToggle.addEventListener("click", () => {
         const on = password.type === "password";

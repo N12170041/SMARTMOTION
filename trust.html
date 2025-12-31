@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>我們的界線｜智動科技</title>
+  <meta name="description" content="智動科技：隱私與界線。安全、尊重、可控，是我們的底線設計。" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-trust">
+  <canvas class="bgParticles" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#how">怎麼陪你</a>
+        <a href="index.html#stories">用戶感受</a>
+        <a href="index.html#trust">隱私與界線</a>
+
+        <div class="dropdown">
+          <button class="dropdown__toggle" aria-expanded="false" aria-haspopup="true">探索智動</button>
+          <div class="dropdown__menu">
+            <a href="about.html">關於智動</a>
+            <a href="news.html">最新資訊</a>
+            <a href="film.html">廣告播放</a>
+            <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+            <a href="trust.html" class="highlight">我們的界線</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="topbar__cta">
+        <a class="btn btn--primary magnet" href="index.html#cta">免費體驗 7 天</a>
+      </div>
+
+      <button class="hamburger" aria-label="開啟選單" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="drawerBackdrop" id="drawerBackdrop" hidden></div>
+  <aside class="mobileDrawer" id="mobileDrawer" aria-hidden="true" aria-label="網站選單">
+    <div class="mobileDrawer__head">
+      <a class="brand brand--drawer" href="index.html">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
+      </a>
+      <button class="drawerClose" type="button" aria-label="關閉選單">×</button>
+    </div>
+    <nav class="mobileDrawer__nav">
+      <a href="index.html#how">怎麼陪你</a>
+      <a href="index.html#stories">用戶感受</a>
+      <a href="index.html#trust">隱私與界線</a>
+      <a class="btn btn--primary" href="index.html#cta">免費體驗 7 天</a>
+      <div class="drawerDivider"></div>
+      <div class="drawerSectionTitle">探索智動</div>
+      <a href="about.html">關於智動</a>
+      <a href="news.html">最新資訊</a>
+      <a href="film.html">廣告播放</a>
+      <a href="soul-builder.html">Soul Builder <span class="badge">Beta</span></a>
+      <a href="trust.html" class="is-active">我們的界線</a>
+      <a href="app.html">Web App 入口</a>
+    </nav>
+  </aside>
+
+  <main class="container" style="padding:54px 0 84px">
+    <section class="card reveal">
+      <h1 class="h2" style="margin:0 0 8px">隱私與界線</h1>
+      <p class="muted" style="margin:0 0 16px">在冰冷的科技中，我們選擇把「可控」放在最前面。這裡是你能一眼理解的設計底線。</p>
+
+      <div class="grid2">
+        <div class="pill" style="align-items:flex-start">
+          <div style="font-weight:700;margin-bottom:6px">資料最小化</div>
+          <div class="muted">只收集提供服務所必需的資料；可隨時匯出與刪除。</div>
+        </div>
+        <div class="pill" style="align-items:flex-start">
+          <div style="font-weight:700;margin-bottom:6px">權限透明</div>
+          <div class="muted">每個權限都有清楚的用途說明；不默默開啟、不暗中追蹤。</div>
+        </div>
+        <div class="pill" style="align-items:flex-start">
+          <div style="font-weight:700;margin-bottom:6px">可關閉、可退出</div>
+          <div class="muted">你永遠可以中止互動、關閉功能與解除綁定，不受綁架。</div>
+        </div>
+        <div class="pill" style="align-items:flex-start">
+          <div style="font-weight:700;margin-bottom:6px">安全優先</div>
+          <div class="muted">以防誤用為前提設計 UI 與流程，避免造成不必要的風險。</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn--primary magnet" href="index.html#cta">加入試用名單</a>
+        <a class="btn btn--ghost" href="soul-builder.html">查看 Soul Builder</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="muted">© SMARTMOTION ROBOTICS</div>
+      <div class="muted">以信任為前提的產品設計</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
