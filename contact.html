@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="合作提案（B2B / 內容合作 / 渠道）、媒體聯絡、法務與隱私聯絡窗口。" />
+  <title>聯絡我們 / 合作｜智動科技</title>
+  <link rel="stylesheet" href="style.css?v=20251231075954" />
+  <style>
+
+  .page-contact .hero{ grid-template-columns: 1.05fr .95fr; }
+  .page-contact .hero__title{ font-size: 40px; }
+  .page-contact .contactGrid{
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .page-contact .contactCard{
+    border:1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+    border-radius: var(--radius2);
+    padding: 18px;
+    box-shadow: 0 14px 44px rgba(0,0,0,.18);
+  }
+  .page-contact .contactCard h3{ margin:0 0 8px; }
+  .page-contact .meta{
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted2);
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 10px;
+  }
+  .page-contact .contactForm{
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .page-contact .formCard{
+    border:1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+    border-radius: var(--radius2);
+    padding: 18px;
+    box-shadow: 0 14px 44px rgba(0,0,0,.18);
+  }
+  .page-contact label{ display:block; margin: 10px 0 6px; color: var(--muted2); font-size: 12px; }
+  .page-contact input, .page-contact select, .page-contact textarea{
+    width: 100%;
+    padding: 12px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(11,16,32,.55);
+    color: var(--txt);
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .page-contact textarea{ min-height: 120px; resize: vertical; line-height: 1.6; }
+  .page-contact input:focus, .page-contact select:focus, .page-contact textarea:focus{
+    border-color: rgba(122,162,255,.55);
+    box-shadow: 0 0 0 4px rgba(122,162,255,.12);
+  }
+  .page-contact .hint{ margin-top: 10px; color: var(--muted2); font-size: 12px; }
+  .page-contact .chips{ margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap; }
+  .page-contact .chip{ background: rgba(255,255,255,.04); }
+  @media (max-width: 980px){
+    .page-contact .hero{ grid-template-columns: 1fr; }
+    .page-contact .contactGrid{ grid-template-columns: 1fr; }
+    .page-contact .contactForm{ grid-template-columns: 1fr; }
+  }
+
+  </style>
+</head>
+<body class="page-contact">
+  <canvas id="bgParticles"></canvas>
+  <div class="bgBlobs" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#how">怎麼陪你</a>
+        <a href="index.html#stories">用戶感受</a>
+        <a href="index.html#trust">隱私與界線</a>
+        <a href="soul-builder.html">試用入口</a>
+        <div class="dropdown">
+          <button class="dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+            探索智動
+          </button>
+          <div class="dropdown__menu" role="menu">
+            <a href="about.html">關於智動</a>
+            <a href="news.html">最新資訊</a>
+            <a href="film.html">廣告播放</a>
+            <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+            <a href="trust.html">我們的界線</a>
+            <a href="faq.html">FAQ 常見問題</a>
+            <a href="contact.html">聯絡我們 / 合作</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="topbar__cta">
+        <a class="btn btn--ghost magnet" href="trust.html">先看隱私</a>
+        <a class="btn btn--primary magnet" href="soul-builder.html">加入試用名單</a>
+      </div>
+      <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero container">
+      <div class="reveal">
+        <div class="eyebrow">Contact • Partnerships</div>
+        <h1 class="hero__title">聯絡我們 / 合作</h1>
+        <p class="hero__desc">不論是 B2B 合作、內容合作、渠道合作，或媒體與法務/隱私窗口，我們希望你可以快速找到正確的人。</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary magnet" href="#form">送出合作/聯絡訊息</a>
+      </div>
+        <div class="trustRow">
+          <div class="trustItem"><span class="trustDot"></span> 合作需求 24–72 小時內回覆</div>
+          <div class="trustItem"><span class="trustDot"></span> 媒體與法務獨立窗口</div>
+          <div class="trustItem"><span class="trustDot"></span> 尊重隱私與合規</div>
+        </div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="panel__header">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="panel__title">快速路由</div>
+        </div>
+        <div class="flow">
+          <div class="flowStep">
+            <div class="stepNo">B2B</div>
+            <div class="stepTitle">企業合作</div>
+            <div class="stepDesc">整合方案、企業內部版本、API / SSO、資料治理。</div>
+          </div>
+          <div class="flowStep">
+            <div class="stepNo">Creators</div>
+            <div class="stepTitle">內容合作</div>
+            <div class="stepDesc">內容 IP、角色設定、活動聯名與共同發佈。</div>
+          </div>
+          <div class="flowStep">
+            <div class="stepNo">Legal</div>
+            <div class="stepTitle">法務與隱私</div>
+            <div class="stepDesc">隱私權、資料請求、合規條款與合作契約。</div>
+          </div>
+        </div>
+        <div class="panel__footer">
+          <div class="miniNote">提示：下方表單可直接產生 Email 草稿，方便你用你慣用的郵件工具寄出。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="routes">
+      <div class="sectionHead reveal">
+        <h2>合作與聯絡類型</h2>
+        <p>選擇最貼近你的需求，我們會把訊息交給對應負責人。</p>
+      </div>
+
+      <div class="contactGrid">
+        <div class="contactCard reveal">
+          <h3>合作提案（B2B）</h3>
+          <p>企業整合、內部部署、資料治理、合規要求、客製化功能與 PoC。</p>
+          <div class="meta">Email：<a href="mailto:biz@example.com">biz@example.com</a></div>
+        </div>
+
+        <div class="contactCard reveal">
+          <h3>內容合作</h3>
+          <p>內容 IP、創作者聯名、角色/世界觀共創、影片/活動合作。</p>
+          <div class="meta">Email：<a href="mailto:partners@example.com">partners@example.com</a></div>
+        </div>
+
+        <div class="contactCard reveal">
+          <h3>渠道合作</h3>
+          <p>平台導流、渠道分銷、場域合作（展會/體驗空間）、在地代理。</p>
+          <div class="meta">Email：<a href="mailto:partners@example.com">partners@example.com</a></div>
+        </div>
+
+        <div class="contactCard reveal">
+          <h3>媒體聯絡</h3>
+          <p>採訪邀約、新聞稿、素材需求、活動報導與評測合作。</p>
+          <div class="meta">Email：<a href="mailto:media@example.com">media@example.com</a></div>
+        </div>
+
+        <div class="contactCard reveal">
+          <h3>法務聯絡</h3>
+          <p>合作契約、商標著作權、合規聲明、政府/第三方來函。</p>
+          <div class="meta">Email：<a href="mailto:legal@example.com">legal@example.com</a></div>
+        </div>
+
+        <div class="contactCard reveal">
+          <h3>隱私聯絡窗口</h3>
+          <p>資料請求、刪除/更正、權利行使與隱私疑問。</p>
+          <div class="meta">Email：<a href="mailto:privacy@example.com">privacy@example.com</a></div>
+        </div>
+      </div>
+
+      <div class="hint reveal" style="margin-top:10px;">
+        上述 Email 為示範（example.com）。上架時請替換成你的實際信箱與網域。
+      </div>
+    </section>
+
+    <section class="section container" id="form">
+      <div class="sectionHead reveal">
+        <h2>送出訊息</h2>
+        <p>填完後按「產生 Email 草稿」即可用你的郵件工具寄出（靜態網站最穩定）。</p>
+      </div>
+
+      <div class="contactForm">
+        <div class="formCard reveal">
+          <form id="contactForm">
+            <label for="topic">主題</label>
+            <select id="topic" required>
+              <option value="B2B 合作">B2B 合作</option>
+              <option value="內容合作">內容合作</option>
+              <option value="渠道合作">渠道合作</option>
+              <option value="媒體聯絡">媒體聯絡</option>
+              <option value="法務">法務</option>
+              <option value="隱私">隱私</option>
+              <option value="其他">其他</option>
+            </select>
+
+            <label for="name">姓名 / 團隊</label>
+            <input id="name" type="text" placeholder="你的稱呼" required />
+
+            <label for="email">回覆信箱</label>
+            <input id="email" type="email" placeholder="you@example.com" required />
+
+            <label for="msg">訊息內容</label>
+            <textarea id="msg" placeholder="請簡述合作內容、時程、期望的合作方式（可含連結）" required></textarea>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn btn--primary magnet" type="submit">產生 Email 草稿</button>
+      </div>
+
+            <div class="formMsg" id="contactMsg" style="margin-top:10px;"></div>
+          </form>
+        </div>
+
+        <div class="formCard reveal">
+          <h3 style="margin:0 0 10px;">寄送前你可以附上</h3>
+          <ul>
+            <li>合作背景／公司或個人介紹</li>
+            <li>希望合作的形式（一次性／長期／分潤／授權）</li>
+            <li>預期時程與交付內容</li>
+            <li>若涉及資料：資料範圍、保護與合規要求</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">B2B</span>
+            <span class="chip">Creators</span>
+            <span class="chip">Media</span>
+            <span class="chip">Legal & Privacy</span>
+          </div>
+          <div class="hint">我們的品牌主張：賦予你貪婪的權利—在冰冷的科技中，解放最滾燙的慾望。</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <div class="footer__brand">智動科技</div>
+        <div class="footer__desc">把科技做得更有體溫，並保留界線。</div>
+      </div>
+      <div class="footer__right">
+      <span class="sep">•</span>
+      <span class="sep">•</span>
+        <a href="trust.html">隱私與界線</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Drawer -->
+  <div class="drawerBackdrop" id="drawerBackdrop" hidden aria-hidden="true"></div>
+
+  <aside class="mobileDrawer" id="mobileDrawer" aria-hidden="true" aria-label="行動版選單">
+    <div class="mobileDrawer__head">
+      <a class="brand brand--drawer" href="index.html" aria-label="回到首頁">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+      </a>
+      <button class="drawerClose" type="button" aria-label="關閉選單">✕</button>
+    </div>
+
+    <div class="drawerDivider"></div>
+    <div class="drawerSectionTitle">導覽</div>
+
+    <nav class="mobileDrawer__nav">
+        <a href="index.html#how">怎麼陪你</a>
+        <a href="index.html#stories">用戶感受</a>
+        <a href="index.html#trust">隱私與界線</a>
+        <a href="film.html">廣告播放</a>
+        <a href="soul-builder.html">Soul Builder（Beta）</a>
+      <div class="drawerDivider"></div>
+      <div class="drawerSectionTitle">探索智動</div>
+      <a href="about.html">關於智動</a>
+      <a href="news.html">最新資訊</a>
+      <a href="trust.html">我們的界線</a>
+      <a href="faq.html">FAQ 常見問題</a>
+      <a href="contact.html">聯絡我們 / 合作</a>
+
+      <div class="drawerDivider"></div>
+      <a class="btn btn--primary" href="soul-builder.html">加入試用名單</a>
+      <a class="btn btn--ghost" href="trust.html">先看隱私</a>
+    </nav>
+  </aside>
+
+  <script src="script.js?v=20251231075954"></script>
+  <script>
+
+    // Contact form -> mailto composer (v20251231075954)
+    (function(){
+      const form = document.getElementById("contactForm");
+      const msg = document.getElementById("contactMsg");
+      if(!form || !msg) return;
+
+      const routeTo = (topic) => {
+        const map = {
+          "B2B 合作": "biz@example.com",
+          "內容合作": "partners@example.com",
+          "渠道合作": "partners@example.com",
+          "媒體聯絡": "media@example.com",
+          "法務": "legal@example.com",
+          "隱私": "privacy@example.com",
+          "其他": "biz@example.com"
+        };
+        return map[topic] || "biz@example.com";
+      };
+
+      form.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const topic = document.getElementById("topic")?.value || "合作聯絡";
+        const name = document.getElementById("name")?.value.trim() || "";
+        const email = document.getElementById("email")?.value.trim() || "";
+        const body = document.getElementById("msg")?.value.trim() || "";
+        if(!name || !email || !body) return;
+
+        const to = routeTo(topic);
+        const subject = encodeURIComponent(`[${topic}] ${name}`);
+        const text = encodeURIComponent(
+          `主題：${topic}\n姓名/團隊：${name}\n回覆信箱：${email}\n\n內容：\n${body}\n\n—\n此信由官網 contact.html 表單產生。`
+        );
+
+        const href = `mailto:${to}?subject=${subject}&body=${text}`;
+        window.location.href = href;
+
+        msg.textContent = "已產生 Email 草稿（若未自動開啟，請檢查瀏覽器的 mailto 權限設定）。";
+      });
+    })();
+
+  </script>
+</body>
+</html>

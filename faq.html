@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="智動科技常見問題：費用、隱私、是否需要信用卡、如何取消、支援平台等。" />
+  <title>常見問題 FAQ｜智動科技</title>
+  <link rel="stylesheet" href="style.css?v=20251231075954" />
+  <style>
+
+  /* FAQ page enhancements (page-scoped) */
+  .page-faq .hero{ grid-template-columns: 1.05fr .95fr; }
+  .page-faq .hero__title{ font-size: 40px; }
+  .page-faq .faqWrap{ margin-top: 18px; display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .page-faq details{
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+    border-radius: var(--radius2);
+    box-shadow: 0 14px 44px rgba(0,0,0,.18);
+    overflow: hidden;
+  }
+  .page-faq summary{
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    font-weight: 900;
+  }
+  .page-faq summary::-webkit-details-marker{ display:none; }
+  .page-faq .q{ color: var(--txt); }
+  .page-faq .chev{
+    width: 28px; height: 28px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.04);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    transition: transform .18s ease;
+  }
+  .page-faq details[open] .chev{ transform: rotate(180deg); }
+  .page-faq .a{
+    padding: 0 18px 16px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .page-faq .a .mini{
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(11,16,32,.35);
+    color: var(--muted2);
+    font-size: 13px;
+  }
+  .page-faq .faqGrid{
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 14px;
+  }
+  .page-faq .sideCard{
+    border:1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+    border-radius: var(--radius2);
+    padding: 18px;
+    box-shadow: 0 14px 44px rgba(0,0,0,.18);
+  }
+  .page-faq .sideCard h3{ margin:0 0 10px; }
+  .page-faq .pillRow{ margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap; }
+  .page-faq .pill{ background: rgba(255,255,255,.04); }
+  @media (max-width: 980px){
+    .page-faq .hero{ grid-template-columns: 1fr; }
+    .page-faq .faqGrid{ grid-template-columns: 1fr; }
+  }
+
+  </style>
+</head>
+<body class="page-faq">
+  <canvas id="bgParticles"></canvas>
+  <div class="bgBlobs" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+        <span class="brand__en">SMARTMOTION_ROBOTICS</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#how">怎麼陪你</a>
+        <a href="index.html#stories">用戶感受</a>
+        <a href="index.html#trust">隱私與界線</a>
+        <a href="soul-builder.html">試用入口</a>
+        <div class="dropdown">
+          <button class="dropdown__toggle" aria-expanded="false" aria-haspopup="true">
+            探索智動
+          </button>
+          <div class="dropdown__menu" role="menu">
+            <a href="about.html">關於智動</a>
+            <a href="news.html">最新資訊</a>
+            <a href="film.html">廣告播放</a>
+            <a href="soul-builder.html" class="highlight">Soul Builder <span class="badge">Beta</span></a>
+            <a href="trust.html">我們的界線</a>
+            <a href="faq.html">FAQ 常見問題</a>
+            <a href="contact.html">聯絡我們 / 合作</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="topbar__cta">
+        <a class="btn btn--ghost magnet" href="trust.html">先看隱私</a>
+        <a class="btn btn--primary magnet" href="soul-builder.html">加入試用名單</a>
+      </div>
+      <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero container">
+      <div class="reveal">
+        <div class="eyebrow">Support • FAQ</div>
+        <h1 class="hero__title">常見問題</h1>
+        <p class="hero__desc">把疑問說清楚，體驗才會安心。以下整理消費者最常問的費用、隱私、信用卡、取消與平台支援。</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary magnet" href="soul-builder.html">加入試用名單</a>
+          <a class="btn btn--ghost magnet" href="trust.html">先看隱私與界線</a>
+        </div>
+        <div class="trustRow">
+          <div class="trustItem"><span class="trustDot"></span> 不用信用卡加入名單</div>
+          <div class="trustItem"><span class="trustDot"></span> 可隨時取消</div>
+          <div class="trustItem"><span class="trustDot"></span> 以界線建立信任</div>
+        </div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="panel__header">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="panel__title">快速導覽</div>
+        </div>
+        <div class="flow">
+          <div class="flowStep">
+            <div class="stepNo">01</div>
+            <div class="stepTitle">先加入名單</div>
+            <div class="stepDesc">先完成基本設定，等候開通通知。</div>
+          </div>
+          <div class="flowStep">
+            <div class="stepNo">02</div>
+            <div class="stepTitle">看懂界線</div>
+            <div class="stepDesc">隱私與互動規則透明，才能長期安心使用。</div>
+          </div>
+          <div class="flowStep">
+            <div class="stepNo">03</div>
+            <div class="stepTitle">需要再聯絡</div>
+            <div class="stepDesc">合作、媒體、法務與隱私都有對應窗口。</div>
+          </div>
+        </div>
+        <div class="panel__footer">
+          <div class="miniNote">如果你找不到答案：請到「聯絡我們」留下訊息。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="faq">
+      <div class="sectionHead reveal">
+        <h2>你可能正在問</h2>
+        <p>我們把最常見、最關鍵的問題放在前面。每一則回答都以「可理解、可操作、可驗證」為原則。</p>
+      </div>
+
+      <div class="faqGrid">
+        <div class="faqWrap">
+      <details class="reveal">
+        <summary><span class="q">費用與方案是怎麼計算？</span><span class="chev">▾</span></summary>
+        <div class="a">目前為 Beta 邀請制，方案會依「功能開放範圍 / 使用量 / 區域」分級。加入試用名單不需付費；正式方案以官網公告與開通信為準。<div class='mini'>建議：如果你只想先體驗互動與設定流程，先加入試用名單即可。</div></div>
+      </details>
+      <details class="reveal">
+        <summary><span class="q">需要信用卡才能開始嗎？</span><span class="chev">▾</span></summary>
+        <div class="a">加入試用名單不需要信用卡。若你之後選擇升級正式方案，才會依你選擇的支付方式進行付款設定。</div>
+      </details>
+      <details class="reveal">
+        <summary><span class="q">隱私怎麼做？我不想留下敏感資料。</span><span class="chev">▾</span></summary>
+        <div class="a">我們以「最小化蒐集」與「可控可刪除」為原則：你可以使用最少資料啟動、在設定中管理資料留存，並以產品頁的『我們的界線』作為承諾基準。<div class='mini'>想快速了解？建議先看 <a href='trust.html'>我們的界線</a>。</div></div>
+      </details>
+      <details class="reveal">
+        <summary><span class="q">我可以隨時取消嗎？取消後會怎樣？</span><span class="chev">▾</span></summary>
+        <div class="a">可以。一般做法是：你在帳號/訂閱設定一鍵取消，取消後仍可使用到當期結束；若有試用期，則在試用到期前取消就不會進入下一期計費（以你當時方案規則為準）。</div>
+      </details>
+      <details class="reveal">
+        <summary><span class="q">支援哪些平台？需要下載 App 嗎？</span><span class="chev">▾</span></summary>
+        <div class="a">目前以 Web App 為主，支援手機與電腦瀏覽器（Chrome / Safari / Edge）。不必先下載原生 App；你也可以把 Web App 加到主畫面當成捷徑使用。</div>
+      </details>
+      <details class="reveal">
+        <summary><span class="q">我可以匿名使用嗎？</span><span class="chev">▾</span></summary>
+        <div class="a">可以。你可以用最少資訊註冊（例如只用 Email），並在設定中管理可見資訊與通知方式。</div>
+      </details>
+      <details class="reveal">
+        <summary><span class="q">為什麼會有『安全與界線』？這跟產品體驗有關嗎？</span><span class="chev">▾</span></summary>
+        <div class="a">有關。產品體驗越沉浸，就越需要清楚界線來保護你：包含內容規範、資料控管、以及互動方式的透明度。界線不是限制，而是讓使用更安心。</div>
+      </details>
+      <details class="reveal">
+        <summary><span class="q">遇到問題要找誰？</span><span class="chev">▾</span></summary>
+        <div class="a">你可以先查本頁 FAQ；若仍需要協助，請到 <a href='contact.html'>聯絡我們</a>，我們會依問題類型（客服/媒體/法務與隱私）導向對應窗口。</div>
+      </details>
+        </div>
+
+        <aside class="sideCard reveal">
+          <h3>信任與界線（摘要）</h3>
+          <p>我們把信任設計成產品的一部分，而不是事後補充條款。</p>
+          <ul>
+            <li>最小化蒐集：只拿需要的</li>
+            <li>可控可刪除：你能管理留存</li>
+            <li>透明規則：互動與內容規範清楚</li>
+          </ul>
+          <div class="pillRow">
+            <span class="pill">可隨時取消</span>
+            <span class="pill">不用信用卡加入名單</span>
+            <span class="pill">Web App 優先</span>
+          </div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn--ghost" href="trust.html">看完整界線</a>
+      </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="container cta__inner reveal">
+        <div>
+          <h2 style="margin:0 0 8px;">準備開始了嗎？</h2>
+          <p style="margin:0;">先加入試用名單，開通時我們會通知你。</p>
+          <div class="ctaPills">
+            <span class="pill">不用信用卡</span>
+            <span class="pill">可隨時取消</span>
+            <span class="pill">隱私優先</span>
+          </div>
+        </div>
+        <div class="ctaForm">
+          <form id="leadForm">
+            <input id="email" type="email" placeholder="你的 Email（用來通知你開通）" required />
+            <button class="btn btn--primary magnet" type="submit">加入試用名單</button>
+          </form>
+          <div class="formMsg" id="formMsg"></div>
+          <div class="ctaNote">我們只用來通知開通與重要更新；你可隨時取消訂閱。</div>
+        </div>
+      </div>
+    </section>
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "費用與方案是怎麼計算？", "acceptedAnswer": {"@type": "Answer", "text": "目前為 Beta 邀請制，方案會依「功能開放範圍 / 使用量 / 區域」分級。加入試用名單不需付費；正式方案以官網公告與開通信為準。建議：如果你只想先體驗互動與設定流程，先加入試用名單即可。"}}, {"@type": "Question", "name": "需要信用卡才能開始嗎？", "acceptedAnswer": {"@type": "Answer", "text": "加入試用名單不需要信用卡。若你之後選擇升級正式方案，才會依你選擇的支付方式進行付款設定。"}}, {"@type": "Question", "name": "隱私怎麼做？我不想留下敏感資料。", "acceptedAnswer": {"@type": "Answer", "text": "我們以「最小化蒐集」與「可控可刪除」為原則：你可以使用最少資料啟動、在設定中管理資料留存，並以產品頁的『我們的界線』作為承諾基準。想快速了解？建議先看 我們的界線。"}}, {"@type": "Question", "name": "我可以隨時取消嗎？取消後會怎樣？", "acceptedAnswer": {"@type": "Answer", "text": "可以。一般做法是：你在帳號/訂閱設定一鍵取消，取消後仍可使用到當期結束；若有試用期，則在試用到期前取消就不會進入下一期計費（以你當時方案規則為準）。"}}, {"@type": "Question", "name": "支援哪些平台？需要下載 App 嗎？", "acceptedAnswer": {"@type": "Answer", "text": "目前以 Web App 為主，支援手機與電腦瀏覽器（Chrome / Safari / Edge）。不必先下載原生 App；你也可以把 Web App 加到主畫面當成捷徑使用。"}}, {"@type": "Question", "name": "我可以匿名使用嗎？", "acceptedAnswer": {"@type": "Answer", "text": "可以。你可以用最少資訊註冊（例如只用 Email），並在設定中管理可見資訊與通知方式。"}}, {"@type": "Question", "name": "為什麼會有『安全與界線』？這跟產品體驗有關嗎？", "acceptedAnswer": {"@type": "Answer", "text": "有關。產品體驗越沉浸，就越需要清楚界線來保護你：包含內容規範、資料控管、以及互動方式的透明度。界線不是限制，而是讓使用更安心。"}}, {"@type": "Question", "name": "遇到問題要找誰？", "acceptedAnswer": {"@type": "Answer", "text": "你可以先查本頁 FAQ；若仍需要協助，請到 聯絡我們，我們會依問題類型（客服/媒體/法務與隱私）導向對應窗口。"}}]}</script>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <div class="footer__brand">智動科技</div>
+        <div class="footer__desc">把科技做得更有體溫，並保留界線。</div>
+      </div>
+      <div class="footer__right">
+      <span class="sep">•</span>
+      <span class="sep">•</span>
+        <a href="trust.html">隱私與界線</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Drawer -->
+  <div class="drawerBackdrop" id="drawerBackdrop" hidden aria-hidden="true"></div>
+
+  <aside class="mobileDrawer" id="mobileDrawer" aria-hidden="true" aria-label="行動版選單">
+    <div class="mobileDrawer__head">
+      <a class="brand brand--drawer" href="index.html" aria-label="回到首頁">
+        <span class="brand__mark">智動</span>
+        <span class="brand__name">智動科技</span>
+      </a>
+      <button class="drawerClose" type="button" aria-label="關閉選單">✕</button>
+    </div>
+
+    <div class="drawerDivider"></div>
+    <div class="drawerSectionTitle">導覽</div>
+
+    <nav class="mobileDrawer__nav">
+        <a href="index.html#how">怎麼陪你</a>
+        <a href="index.html#stories">用戶感受</a>
+        <a href="index.html#trust">隱私與界線</a>
+        <a href="film.html">廣告播放</a>
+        <a href="soul-builder.html">Soul Builder（Beta）</a>
+      <div class="drawerDivider"></div>
+      <div class="drawerSectionTitle">探索智動</div>
+      <a href="about.html">關於智動</a>
+      <a href="news.html">最新資訊</a>
+      <a href="trust.html">我們的界線</a>
+      <a href="faq.html">FAQ 常見問題</a>
+      <a href="contact.html">聯絡我們 / 合作</a>
+
+      <div class="drawerDivider"></div>
+      <a class="btn btn--primary" href="soul-builder.html">加入試用名單</a>
+      <a class="btn btn--ghost" href="trust.html">先看隱私</a>
+    </nav>
+  </aside>
+
+  <script src="script.js?v=20251231075954"></script>
+  <script>
+
+  </script>
+</body>
+</html>
