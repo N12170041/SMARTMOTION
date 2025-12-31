@@ -231,3 +231,93 @@ figcaption{margin-top:10px;color:var(--muted2);font-size:12px}
     width: 100%;
   }
 }
+
+/* ===== Mobile Drawer Navigation (v20251231055939) =====
+   - Hide desktop nav + CTAs on mobile to prevent header deformation.
+   - Use off-canvas drawer (right slide-in) so it won't be blocked by desktop dropdown.
+*/
+
+@media (max-width: 980px){
+  .nav{ display:none !important; }
+  .topbar__cta{ display:none !important; }
+  .topbar__inner{ justify-content: space-between; gap: 12px; }
+  .brand__en{ display:none !important; }
+}
+
+#bgParticles{ pointer-events:none; }
+
+/* Backdrop */
+.navBackdrop{
+  position: fixed;
+  inset: 0;
+  z-index: 2147482900;
+  background: rgba(0,0,0,.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+body.menuOpen .navBackdrop{ opacity: 1; pointer-events: auto; }
+body.menuOpen{ overflow:hidden; }
+
+/* Drawer */
+@media (max-width: 980px){
+  .mobileNav{
+    position: fixed !important;
+    top: 0; bottom: 0; left: 0;
+    width: min(360px, 88vw);
+    z-index: 2147483000 !important;
+
+    background: rgba(11,16,32,.96) !important;
+    backdrop-filter: blur(16px);
+    border-right: 1px solid rgba(255,255,255,.10);
+    box-shadow: 24px 0 60px rgba(0,0,0,.55);
+
+    transform: translateX(-110%);
+    transition: transform .22s ease;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    pointer-events: auto;
+
+    padding: calc(var(--topbarH, 72px) + 10px) 16px calc(18px + env(safe-area-inset-bottom));
+  }
+  .mobileNav.show{ transform: translateX(0); }
+
+  .mobileNav a, .mobileNav button{ width: 100%; }
+  .mobileNav a{
+    display:block;
+    padding: 12px 12px;
+    border-radius: 14px;
+    font-size: 15px;
+  }
+  .mobileNav a:hover{ background: rgba(255,255,255,.06); }
+
+  .mobileNav__submenu{ padding-left: 8px; }
+  .mobileNav__submenu a{
+    margin-top: 8px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.03);
+  }
+
+  .mobileNav__group{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding: 12px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.02);
+    color: var(--text);
+    width: 100%;
+  }
+  .mobileNav__group .arrow{ transition: transform .16s ease; }
+  .mobileNav__group[aria-expanded="true"] .arrow{ transform: rotate(180deg); }
+}
+
+.hamburger{ position: relative; z-index: 2147483100; }
+.topbar{ position: sticky; top: 0; z-index: 2147483050; }
+
+/* mobile-drawer-left build:20251231060508 */
