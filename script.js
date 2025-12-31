@@ -4,26 +4,12 @@
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
 
   // Mobile nav
-
-  // Keep CSS var in sync with sticky topbar height (for fixed mobile menu positioning)
-  const topbar = $(".topbar");
-  const setTopbarHeight = () => {
-    if (!topbar) return;
-    const h = Math.round(topbar.getBoundingClientRect().height);
-    document.documentElement.style.setProperty("--topbarH", h + "px");
-  };
-  setTopbarHeight();
-  window.addEventListener("resize", setTopbarHeight);
-
   const burger = $(".hamburger");
   const mobileNav = $(".mobileNav");
-  // Backdrop for mobile menu (improves tap-to-close + prevents "stuck" feeling)
-  let navBackdrop = $(".navBackdrop");
-  if (!navBackdrop) {
-    navBackdrop = document.createElement("div");
-    navBackdrop.className = "navBackdrop";
-    navBackdrop.setAttribute("aria-hidden", "true");
-    document.body.appendChild(navBackdrop);
+  // Move mobileNav to body end to avoid stacking-context issues on mobile browsers
+  // (sticky header + backdrop-filter can make the menu visible-but-unclickable)
+  if (mobileNav && mobileNav.parentElement !== document.body) {
+    document.body.appendChild(mobileNav);
   }
 
   if (burger && mobileNav) {
@@ -32,78 +18,12 @@
       burger.setAttribute("aria-expanded", String(!expanded));
       mobileNav.classList.toggle("show");
       mobileNav.setAttribute("aria-hidden", expanded ? "true" : "false");
-
-      // lock/unlock background scroll
-      document.body.classList.toggle("menuOpen", !expanded);
-
-      // keep submenu collapsed when closing
-      const g = $(".mobileNav__group");
-      const sub = $(".mobileNav__submenu");
-      if (expanded && g && sub) {
-        g.setAttribute("aria-expanded", "false");
-        sub.hidden = true;
-      }
     });
-    
-    // Close on backdrop tap
-    if (navBackdrop) {
-      navBackdrop.addEventListener("click", () => {
-        burger.setAttribute("aria-expanded", "false");
-        mobileNav.classList.remove("show");
-        mobileNav.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("menuOpen");
-      });
-    }
-
-    // Close on Escape
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        burger.setAttribute("aria-expanded", "false");
-        mobileNav.classList.remove("show");
-        mobileNav.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("menuOpen");
-      }
-    });
-
     $$(".mobileNav a").forEach(a => a.addEventListener("click", () => {
       burger.setAttribute("aria-expanded", "false");
       mobileNav.classList.remove("show");
       mobileNav.setAttribute("aria-hidden", "true");
     }));
-
-  }
-
-  // Mobile submenu toggle (探索智動)
-  const mobileGroup = $(".mobileNav__group");
-  const mobileSub = $(".mobileNav__submenu");
-  if (mobileGroup && mobileSub) {
-    mobileGroup.addEventListener("click", () => {
-      const expanded = mobileGroup.getAttribute("aria-expanded") === "true";
-      mobileGroup.setAttribute("aria-expanded", String(!expanded));
-      mobileSub.hidden = expanded;
-    });
-  }
-
-  // Dropdown (desktop/tablet): click to open/close (better for touch devices)
-  const dropdown = $(".dropdown");
-  const dropBtn = $(".dropdown__toggle");
-  const dropMenu = $(".dropdown__menu");
-  if (dropdown && dropBtn && dropMenu) {
-    const closeDrop = () => {
-      dropdown.classList.remove("open");
-      dropBtn.setAttribute("aria-expanded", "false");
-    };
-    dropBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const isOpen = dropdown.classList.toggle("open");
-      dropBtn.setAttribute("aria-expanded", String(isOpen));
-    });
-    document.addEventListener("click", (e) => {
-      if (!dropdown.contains(e.target)) closeDrop();
-    }, { capture: true });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeDrop();
-    });
   }
 
   // Scroll reveal

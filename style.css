@@ -193,115 +193,41 @@ figcaption{margin-top:10px;color:var(--muted2);font-size:12px}
 }
 .page-news .statusPanel__note{ margin-top:10px; }
 
-/* ===== Mobile UX Fix: Hamburger menu scroll + layout stability (Index) =====
-   - Prevents "menu stuck" by making mobile nav a fixed, scrollable panel.
-   - Hides topbar CTA on small screens to avoid squeezed/vertical-looking buttons.
-   - Adds safe-area padding and better tap targets.
+/* ===== Definitive Mobile Menu Drawer Fix (overlay + clickable) =====
+   If you can see the dimmed page but can't click menu items, it's usually a stacking-context issue.
+   This patch:
+   1) moves mobileNav to be a full-screen fixed drawer (JS also moves node to <body> end)
+   2) forces z-index order: topbar > drawer > backdrop > page
+   3) prevents background layers from capturing touch
 */
-:root{ --topbarH: 72px; }
+#bgParticles{ pointer-events:none; }
+.topbar{ z-index: 10002 !important; }
+.navBackdrop{ z-index: 10000 !important; }
 
-.navBackdrop{
-  position: fixed;
-  inset: 0;
-  z-index: 55;
-  background: rgba(0,0,0,.42);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .18s ease;
-}
-body.menuOpen .navBackdrop{
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* lock background scroll when menu open */
-body.menuOpen{
-  overflow: hidden;
-}
-
-/* Make hamburger menu a scrollable panel on mobile */
 @media (max-width: 980px){
-  .topbar__inner{
-    justify-content: space-between;
-  }
-  .topbar__cta{
-    display: none; /* move CTAs into the mobile menu */
-  }
-  .brand{
-    min-width: 0;
-  }
-  .brand__en{
-    display: none;
-  }
-
   .mobileNav{
-    /* override previous "display:none" + in-flow layout with a fixed panel */
+    position: fixed !important;
+    left: 0; right: 0; top: 0; bottom: 0;
+    z-index: 10001 !important;
+
     display: none;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: var(--topbarH);
-    bottom: 0;
-    z-index: 60;
+    padding: calc(var(--topbarH, 72px) + 12px) 18px calc(22px + env(safe-area-inset-bottom));
+    background: rgba(11,16,32,.94);
+    backdrop-filter: blur(14px);
 
-    padding: 14px 18px calc(22px + env(safe-area-inset-bottom));
-    background: rgba(11,16,32,.92);
-    backdrop-filter: blur(12px);
-
-    max-height: calc(100dvh - var(--topbarH));
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
 
-    border-top: 1px solid rgba(255,255,255,.06);
-  }
-  .mobileNav.show{ display: block; }
+    pointer-events: auto !important;
+    touch-action: pan-y;
 
-  .mobileNav a{
-    font-size: 15px;
-    padding: 12px 10px;
-    border-radius: 14px;
+    border-top: 0;
   }
-  .mobileNav a:hover{
-    background: rgba(255,255,255,.06);
-  }
+  .mobileNav.show{ display: block !important; }
 
-  .mobileNav__group{
-    margin-top: 2px;
+  /* slightly stronger separation from background */
+  .mobileNav a, .mobileNav button{
+    width: 100%;
   }
-  .mobileNav__group .arrow{
-    transition: transform .16s ease;
-    opacity: .9;
-  }
-  .mobileNav__group[aria-expanded="true"] .arrow{
-    transform: rotate(180deg);
-  }
-  .mobileNav__submenu{
-    padding-left: 8px;
-  }
-  .mobileNav__submenu a{
-    padding: 11px 10px;
-    background: rgba(255,255,255,.02);
-    border: 1px solid rgba(255,255,255,.06);
-    margin: 8px 0 0;
-  }
-}
-
-@media (max-width: 520px){
-  .brand__mark{ width: 34px; height: 34px; border-radius: 11px; }
-  .brand__name{ font-size: 16px; }
-}
-
-/* Allow dropdown menu to be opened via click/tap (JS adds .open) */
-.dropdown.open .dropdown__menu{
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-/* ===== Mobile menu layering + touch scroll fix (hotfix) ===== */
-.topbar{ z-index: 10002; }
-.navBackdrop{ z-index: 10000; }
-@media (max-width: 980px){
-  .mobileNav{ z-index: 10001; touch-action: pan-y; pointer-events: auto; }
 }
