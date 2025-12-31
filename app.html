@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>登入｜Soul Builder Web App（Beta）</title>
-<meta content="Soul Builder Web App 偽啟動器登入頁。加入試用名單或進入 Web App。" name="description"/>
+<meta content="Soul Builder Web App 啟動器登入頁。加入試用名單或進入 Web App。" name="description"/>
 <meta content="#0b1020" name="theme-color"/>
 <link href="style.css" rel="stylesheet"/>
 <style>
@@ -225,6 +225,55 @@
       animation:sp 1s linear infinite;
     }
     @keyframes sp{ to{ transform:rotate(360deg); } }
+  
+    /* Background audio controls (fixed) */
+    body.page-app .audioCtl{
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(11,16,32,.55);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+    body.page-app .audioBtn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--txt);
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    body.page-app .audioBtn:hover{ background: rgba(255,255,255,.07); }
+    body.page-app .audioIcon{ font-size: 14px; }
+    body.page-app .audioLabel{ opacity: .9; }
+    body.page-app .audioVol{
+      width: 140px;
+      accent-color: rgba(122,162,255,.85);
+    }
+    @media (max-width: 520px){
+      body.page-app .audioCtl{
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+        justify-content: space-between;
+      }
+      body.page-app .audioVol{ width: 44vw; max-width: 180px; }
+    }
+
   </style>
 </head>
 <body class="page-app">
@@ -237,6 +286,16 @@
 <span class="blob b2"></span>
 <span class="blob b3"></span>
 </div>
+
+  <!-- Background Audio Controls -->
+  <div class="audioCtl" id="audioCtl" aria-label="背景音訊控制">
+    <button class="audioBtn" id="audioToggle" type="button" aria-pressed="false" title="開啟/關閉背景聲音">
+      <span class="audioIcon" aria-hidden="true">🔇</span>
+      <span class="audioLabel">靜音</span>
+    </button>
+    <input class="audioVol" id="audioVol" type="range" min="0" max="1" step="0.01" value="0.6" aria-label="背景音量"/>
+  </div>
+
 <header class="topbar" id="top">
 <div class="container topbar__inner">
 <a class="brand" href="index.html">
@@ -266,9 +325,9 @@
 <section class="stage container">
 <div class="loginCard reveal">
 <div class="loginCard__head">
-<p class="eyebrow">Web App · 偽啟動器 <span class="badge" style="margin-left:8px;">Beta</span></p>
+<p class="eyebrow">Web App · 啟動器 <span class="badge" style="margin-left:8px;">Beta</span></p>
 <h1 class="loginTitle">登入 Soul Builder</h1>
-<p class="loginSub">這不是實際 App，而是入口橋接頁。你可以先登入體驗流程，再決定是否加入試用。</p>
+<p class="loginSub">你可以先登入體驗流程，再決定是否加入試用。</p>
 <div class="betaRow">
 <div class="betaBadge"><span class="betaDot"></span> BETA ACCESS</div>
 <div class="safeNote">界線可控 · 可退出 · 可重設</div>
@@ -301,8 +360,8 @@
               </button>
 </div>
 <div class="tiny">
-              提示：這是「偽啟動器」頁面。提交後會顯示一個簡易啟動面板，用來模擬進入 App 的節奏。<br/>
-              若你有真正的 Web App 入口，將此頁的「進入 Web App」連結改成你的外部 URL 或 <code>/app</code> 即可。
+              提示：這是「啟動器」頁面。提交後會顯示一個簡易啟動面板，用來模擬進入 App 的節奏。<br/>
+              
             </div>
 <div aria-live="polite" class="formMsg" id="loginMsg" style="margin-top:12px;"></div>
 </form>
@@ -449,6 +508,125 @@
         openLauncher("guest");
       });
     })();
-  </script>
+  
+    // ===== Background audio controller (v20251231072007) =====
+    (function(){
+      const bgVideo = document.querySelector(".loginBg video");
+      const ctl = document.getElementById("audioCtl");
+      const toggle = document.getElementById("audioToggle");
+      const vol = document.getElementById("audioVol");
+      if(!bgVideo || !ctl || !toggle || !vol) return;
+
+      const LS_MUTED = "sm_login_bg_muted";
+      const LS_VOL = "sm_login_bg_vol";
+
+      const setUI = (muted, volume) => {
+        toggle.setAttribute("aria-pressed", String(!muted));
+        const icon = toggle.querySelector(".audioIcon");
+        const label = toggle.querySelector(".audioLabel");
+        if (muted || volume <= 0.001) {
+          if(icon) icon.textContent = "🔇";
+          if(label) label.textContent = "靜音";
+        } else {
+          if(icon) icon.textContent = "🔊";
+          if(label) label.textContent = "音量";
+        }
+      };
+
+      // Defaults
+      let savedMuted = true;
+      let savedVol = 0.6;
+
+      try {
+        const m = localStorage.getItem(LS_MUTED);
+        const v = localStorage.getItem(LS_VOL);
+        if (m !== null) savedMuted = (m === "1");
+        if (v !== null && !Number.isNaN(parseFloat(v))) savedVol = Math.min(1, Math.max(0, parseFloat(v)));
+      } catch(e){}
+
+      vol.value = String(savedVol);
+      bgVideo.volume = savedVol;
+
+      // Always start muted to satisfy autoplay policies; remember "desired" state
+      let desiredMuted = savedMuted;
+      bgVideo.muted = true;
+      setUI(true, savedVol);
+
+      const persist = () => {
+        try {
+          localStorage.setItem(LS_MUTED, desiredMuted ? "1" : "0");
+          localStorage.setItem(LS_VOL, String(bgVideo.volume));
+        } catch(e){}
+      };
+
+      const tryUnmuteAndPlay = async () => {
+        bgVideo.muted = false;
+        try {
+          await bgVideo.play();
+          setUI(false, bgVideo.volume);
+          desiredMuted = false;
+          persist();
+        } catch(err) {
+          // Browser blocked autoplay with sound. Keep muted but mark desired state.
+          bgVideo.muted = true;
+          setUI(true, bgVideo.volume);
+          desiredMuted = false;
+          persist();
+          const label = toggle.querySelector(".audioLabel");
+          if(label) {
+            label.textContent = "點一下開聲";
+            setTimeout(() => setUI(true, bgVideo.volume), 1400);
+          }
+        }
+      };
+
+      const mute = () => {
+        bgVideo.muted = true;
+        desiredMuted = true;
+        setUI(true, bgVideo.volume);
+        persist();
+      };
+
+      toggle.addEventListener("click", () => {
+        const currentlyMuted = bgVideo.muted || bgVideo.volume <= 0.001;
+        if (currentlyMuted) {
+          if (bgVideo.volume <= 0.001) {
+            bgVideo.volume = Math.max(0.35, parseFloat(vol.value || "0.6"));
+            vol.value = String(bgVideo.volume);
+          }
+          tryUnmuteAndPlay();
+        } else {
+          mute();
+        }
+      });
+
+      vol.addEventListener("input", () => {
+        const v = Math.min(1, Math.max(0, parseFloat(vol.value)));
+        bgVideo.volume = v;
+        if (v <= 0.001) {
+          bgVideo.muted = true;
+          desiredMuted = true;
+          setUI(true, v);
+        } else {
+          if (!desiredMuted) {
+            bgVideo.muted = false;
+            bgVideo.play().catch(()=>{});
+          }
+          setUI(bgVideo.muted, v);
+        }
+        persist();
+      });
+
+      // If user previously wanted sound, enable on first gesture anywhere
+      if (!savedMuted) {
+        desiredMuted = false;
+        const oneShot = () => {
+          tryUnmuteAndPlay();
+        };
+        window.addEventListener("pointerdown", oneShot, { once: true });
+      }
+    })();
+
+</script>
 </body>
 </html>
